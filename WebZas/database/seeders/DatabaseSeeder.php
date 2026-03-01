@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\boardgames;
+use App\Models\types;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,11 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            UserSeeder::class,
+            BoardGamesSeeder::class,
+            sessions_zasSeeder::class,
+            typesSeeder::class,
+            boardgames_has_typesSeeder::class,
         ]);
+
+       
     }
 }
