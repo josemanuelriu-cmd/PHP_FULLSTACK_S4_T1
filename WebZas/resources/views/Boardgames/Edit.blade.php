@@ -11,7 +11,7 @@
     </a>
 
     <form action="{{ route('boardgames.update', $boardgame) }}" method="post"
-          class="bg-white shadow-lg rounded-xl p-6 space-y-4">
+          class="bg-white shadow-lg rounded-xl p-6 space-y-4 border border-zas-primary/30">
         @csrf
         @method('PUT')
 
