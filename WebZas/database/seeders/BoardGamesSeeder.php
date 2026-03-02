@@ -40,7 +40,7 @@ class BoardGamesSeeder extends Seeder
             ]
         ]);
 
-        BoardGames::factory(10)->create();        
+        BoardGames::factory(20)->create();        
         
     }
 }
