@@ -11,7 +11,7 @@ class BoardGamesController extends Controller
     public function index()
     {
         //$boardgames = boardgames::orderBy('name', 'asc')->get();
-        $boardgames = boardgames::orderBy('name', 'asc')->paginate(5);
+        $boardgames = boardgames::orderBy('name', 'asc')->paginate(9);
         return view('BoardGames.BoardGames', ['boardgames' => $boardgames]);
     }
     public function show(boardgames $boardgame)

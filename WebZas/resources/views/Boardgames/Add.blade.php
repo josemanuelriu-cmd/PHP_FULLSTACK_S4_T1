@@ -1,19 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="max-w-3xl mx-auto px-4 py-8">
 
-    <h2>Añadir nuevo juego de mesa</h2>
-    <a href="{{ route('boardgames.index') }}">Volver al listado de juegos con nombre de ruta</a>
-    <br>
-    {{--@if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif--}}
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">➕ Añadir nuevo juego</h2>
+
+    <a href="{{ route('boardgames.index') }}"
+       class="text-zas-primary hover:underline mb-6 inline-block">
+        ← Volver al listado
+    </a>
+
+    <form action="{{ route('boardgames.store') }}" method="post"
+          class="bg-white shadow-lg rounded-xl p-6 space-y-4 border border-zas-primary/30">
+        @csrf
+
+        @include('boardgames.Form')
+
+        <!--
     <form action="{{ route('boardgames.store') }}" method="post">
         @csrf
         <label for="name">Nombre del juego:</label>
@@ -46,5 +49,20 @@
         <BR>
         <button type="submit">Añadir juego</button>
     </form>
+-->
+        <div  class="grid md:grid-cols-3 gap-4">
+            <button type="submit"
+                class="bg-zas-primary text-white px-6 py-2 rounded-lg hover:bg-zas-primaryHover transition">
+                Guardar juego
+            </button>
+            <button type="reset"
+                class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition">
+                Limpiar formulario
+            </button>
+            <a href="{{ route('boardgames.index') }}"
+            class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft transition text-center">Cancelar</a>
+        </div>
+    </form>
 
+</div>
 @endsection
