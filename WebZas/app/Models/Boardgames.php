@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Model;
 
 
-class BoardGames extends Model
+class Boardgames extends Model
 {
     //Sino le pasamos el nombre de la tabla, Laravel asume que el nombre de la tabla es el plural del nombre del modelo y en minusculas.
     //En este caso "boardgames". 

@@ -1,11 +1,28 @@
 <?php
 
+use App\Http\Controllers\BoardGamesController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BoardgamesController;
 
 Route::get('/', function () {
     //return view('welcome');
-    return "Inicio de WebZas";
+    return redirect()->route('boardgames.index');
 });
 
-route::resource('boardgames', BoardgamesController::class);
+/*
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+*/
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('boardgames', BoardGamesController::class);
+});
+
+require __DIR__.'/auth.php';

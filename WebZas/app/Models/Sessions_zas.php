@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 
-class sessions_zas extends Model
+class Sessions_zas extends Model
 {
     protected $table = 'sessions_zas';
 

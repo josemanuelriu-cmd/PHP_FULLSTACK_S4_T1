@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nickname')->index();
             $table->string('name');
             $table->string('password');
-            $table->enum('type', ['admin', 'partner', 'guest']);
+            $table->enum('type', ['admin', 'junta', 'partner', 'guest']);
             $table->date('registration_date');
             $table->date('withdrawal_date')->nullable();
             $table->string('email')->unique()->nullable();

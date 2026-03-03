@@ -6,27 +6,27 @@ use App\Http\Requests\StoreBoardGameRequest;
 use Illuminate\Http\Request;
 use App\Models\boardgames;
 
-class BoardGamesController extends Controller
+class BoardgamesController extends Controller
 {
     public function index()
     {
-        //$boardgames = boardgames::orderBy('name', 'asc')->get();
-        $boardgames = boardgames::orderBy('name', 'asc')->paginate(9);
-        return view('BoardGames.BoardGames', ['boardgames' => $boardgames]);
+        //$boardgames = Boardgames::orderBy('name', 'asc')->get();
+        $boardgames = Boardgames::orderBy('name', 'asc')->paginate(9);
+        return view('boardgames.index', ['boardgames' => $boardgames]);
     }
     public function show(boardgames $boardgame)
     {
         //$boardgame = boardgames::find($gameid);
-        return view('BoardGames.Show', ['boardgame' => $boardgame]);
+        return view('boardgames.show', ['boardgame' => $boardgame]);
     }
     public function create()
     {
-        return view('BoardGames.Add');
+        return view('boardgames.create');
     }    
-    public function edit(boardgames $boardgame)
+    public function edit(Boardgames $boardgame)
     {
         //$boardgame = boardgames::find($id);
-        return view('BoardGames.Edit', ['boardgame' => $boardgame]);
+        return view('boardgames.edit', ['boardgame' => $boardgame]);
     }
 
     public function store(StoreBoardGameRequest $request)
@@ -44,10 +44,10 @@ class BoardGamesController extends Controller
         ]);
         */
         //mejora 2
-        boardgames::create($request->all());        
+        Boardgames::create($request->all());        
         /*
         //mejora 1
-        boardgames::create([
+        Boardgames::create([
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
             'min_players' => $request->input('min_players'),
@@ -71,14 +71,14 @@ class BoardGamesController extends Controller
         */  
         return redirect()->route('boardgames.index');
     }
-    public function destroy(boardgames $boardgame)
+    public function destroy(Boardgames $boardgame)
     {
-        //$boardgame = boardgames::find($id);
+        //$boardgame = Boardgames::find($id);
         $boardgame->delete();
         //return redirect('/boardgames');
         return redirect()->route('boardgames.index');
     }
-    public function update(Request $request, boardgames $boardgame)
+    public function update(Request $request, Boardgames $boardgame)
     {
         $request->validate([
             'name' => 'required|string|min:5|max:255', //['required', 'string', 'min:5', 'max:255'] //se pueden usar ambas formas
