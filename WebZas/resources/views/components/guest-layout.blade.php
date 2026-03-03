@@ -1,0 +1,18 @@
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="font-sans antialiased bg-gradient-to-br from-zas-light via-white to-zas-light relative min-h-screen">
+    <!-- Marca de agua -->
+    <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-10">
+        <img src="{{ asset('images/logo.png') }}" alt="ZAS Club Logo" class="w-1/2 h-auto object-contain">
+    </div>
+
+    <!-- Contenido de la página -->
+    <div class="relative z-10 flex flex-col justify-center min-h-screen">
+        {{ $slot }}
+    </div>
+</body>
+</html>
