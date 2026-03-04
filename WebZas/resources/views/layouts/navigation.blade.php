@@ -17,6 +17,12 @@
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('Perfil') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.*')" class="text-zas-dark hover:text-zas-light">
+                        {{ __('Tipos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('sessions_zas.index')" :active="request()->routeIs('sessions_zas.*')" class="text-zas-dark hover:text-zas-light">
+                        {{ __('Sesiones') }}
+                    </x-nav-link>
                 </div>
             </div>
 
