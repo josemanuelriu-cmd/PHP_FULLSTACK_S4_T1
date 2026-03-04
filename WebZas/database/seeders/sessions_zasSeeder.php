@@ -16,6 +16,8 @@ class sessions_zasSeeder extends Seeder
         DB::table('sessions_zas')->insert([
             [
                 'date' => '2026-03-06',
+                'name' => 'Can Verdaguer',
+                'event_name' => 'Sesión de ZAS',
                 'start_time' => '17:00:00',
                 'end_time' => '21:00:00',
                 'max_users' => 15,
@@ -26,6 +28,8 @@ class sessions_zasSeeder extends Seeder
             ],
             [
                 'date' => '2026-03-07',
+                'name' => 'Can Verdaguer',
+                'event_name' => 'Sesión de ZAS',
                 'start_time' => '10:00:00',
                 'end_time' => '14:00:00',
                 'max_users' => 15,

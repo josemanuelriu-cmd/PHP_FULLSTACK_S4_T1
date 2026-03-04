@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🎲 ZAS
+                📅 {{ __('Sesiones') }}
             </h2>
 
             <a href="{{ route('sessions_zas.create') }}"
@@ -16,16 +16,31 @@
     <div class="max-w-6xl mx-auto px-4 py-10 ">
         @if($sessions_zas->count())
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach ($sessions_zas as $session_zas)
+                @foreach ($sessions_zas as $session)
                     <div class="bg-zas-light border border-zas-primary/20
                                 rounded-xl p-6 shadow-md
                                 hover:shadow-xl hover:border-zas-primary transition">
-                        <h3 class="text-xl font-bold text-zas-dark mb-3">
-                            {{ $session_zas->date }}
+                        <h3 class="text-xl font-bold text-zas-primary mb-3">
+                            {{ ucfirst(\Carbon\Carbon::parse($session->date)->isoFormat('dddd D [de] MMMM [de] YYYY')) }}
                         </h3>
 
+                        <p class="text-zas-gray mb-4">
+                            <span class="font-semibold">⏰
+                                {{ \Carbon\Carbon::parse($session->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($session->end_time)->format('H:i') }}
+                            </span>
+                        </p>
+                        <p class="text-zas-gray mb-4">
+                            <span class=" font-semibold">🏠 {{ $session->name }}</span>
+                            @if($session->event_name)
+                                <span class=" font-semibold"> - {{ $session->event_name }}</span>
+                            @endif
+                        </p>
 
-                        <a href="{{ route('sessions_zas.show', ['sessions_zas' => $session_zas->id]) }}"
+                        <p class="text-zas-gray mb-4">
+                            <span class=" font-semibold">📍{{ $session->direction }}</span>
+                        </p>
+
+                        <a href="{{ route('sessions_zas.show', $session) }}"
                            class="text-zas-primary font-semibold hover:underline">
                             Ver ficha →
                         </a>

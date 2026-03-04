@@ -1,8 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-zas-primary leading-tight">
-            👥 {{ __('Perfil') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-zas-primary leading-tight">
+                🧑🏻‍🦱 {{ __('Perfil') }}
+            </h2>
+
+            <a href="{{ route('profile.edit') }}"
+                class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
+                        hover:bg-zas-primaryHover transition shadow-lg">
+                    + Añadir usuario
+                </a>
+        </div>
     </x-slot>
 
     <div class="py-12">

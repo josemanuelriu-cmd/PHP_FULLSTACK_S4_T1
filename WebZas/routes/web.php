@@ -1,21 +1,20 @@
 <?php
 
+use App\Models\Sessions_zas;
 use App\Http\Controllers\BoardGamesController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\Sessions_zasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    //return view('welcome');
-    return redirect()->route('boardgames.index');
+// Binding manual para sessions_zas, para evitar que el binding automático busque por id. En su lugar, buscará por el campo que se le indique (en nuestro caso, 'date').
+Route::bind('sessions_zas', function ($value) {
+    return Sessions_zas::findOrFail($value);
 });
 
-/*
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-*/
+Route::get('/', function () {
+    return redirect()->route('boardgames.index');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
