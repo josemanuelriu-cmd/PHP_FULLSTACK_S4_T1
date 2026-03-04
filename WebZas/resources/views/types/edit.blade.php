@@ -2,38 +2,41 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🎲 Ludoteca ZAS
+                🎲 ZAS
             </h2>
+
         </div>
     </x-slot>
 
     <div class="max-w-3xl mx-auto px-4 py-8">
 
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">➕ Añadir nuevo juego</h2>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">✏ Editar tipo</h2>
 
-        <a href="{{ route('boardgames.index') }}"
+        <a href="{{ route('types.show', $type) }}"
         class="text-zas-primary hover:underline mb-6 inline-block">
-            ← Volver al listado
+            ← Volver
         </a>
 
-        <form action="{{ route('boardgames.store') }}" method="post"
+        <form action="{{ route('types.update', $type) }}" method="post"
             class="bg-white shadow-lg rounded-xl p-6 space-y-4 border border-zas-primary/30">
             @csrf
+            @method('PUT')
 
-            @include('boardgames.Form')
-        
+            @include('types.Form', ['type' => $type])
+
             <div  class="grid md:grid-cols-3 gap-4">
                 <button type="submit"
                     class="bg-zas-primary text-white px-6 py-2 rounded-lg hover:bg-zas-primaryHover transition">
-                    Guardar juego
+                    Actualizar tipo
                 </button>
                 <button type="reset"
                     class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition">
                     Limpiar formulario
                 </button>
-                <a href="{{ route('boardgames.index') }}"
+                <a href="{{ route('types.index') }}"
                 class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft transition text-center">Cancelar</a>
             </div>
+        
         </form>
 
     </div>
