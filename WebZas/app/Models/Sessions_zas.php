@@ -9,6 +9,8 @@ class Sessions_zas extends Model
 {
     protected $table = 'sessions_zas';
 
+    protected $fillable = ['date', 'start_time', 'end_time', 'max_users', 'direction', 'latitude', 'longitude'];
+
     protected function direction(): CastsAttribute
     {
         return CastsAttribute::make(
@@ -21,8 +23,8 @@ class Sessions_zas extends Model
      {
         return [
             'date' => 'date',
-            'start_time' => 'time',
-            'end_time' => 'time',
+            'start_time' => 'datetime',
+            'end_time' => 'datetime',
             'max_users' => 'integer',
             'direction' => 'string',
             'latitude' => 'float',
