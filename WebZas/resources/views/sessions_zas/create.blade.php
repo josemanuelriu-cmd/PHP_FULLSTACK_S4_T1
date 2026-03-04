@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🎲 ZAS
+                📅 {{ __('Sesiones') }}
             </h2>
         </div>
     </x-slot>
@@ -11,10 +11,20 @@
 
         <h2 class="text-3xl font-bold text-gray-800 mb-6">➕ Añadir nueva sesión</h2>
 
-            <a href="{{ route('sessions_zas.index') }}"
-            class="text-zas-primary hover:underline mb-6 inline-block">
-                ← Volver al listado
-            </a>
+        <a href="{{ route('sessions_zas.index') }}"
+        class="text-zas-primary hover:underline mb-6 inline-block">
+            ← Volver al listado
+        </a>
+
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif        
 
         <form action="{{ route('sessions_zas.store') }}" method="post"
             class="bg-white shadow-lg rounded-xl p-6 space-y-4 border border-zas-primary/30">

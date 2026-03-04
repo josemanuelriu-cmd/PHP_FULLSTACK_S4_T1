@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🎲 ZAS
+                🧮 {{ __('Tipos de juego') }}
             </h2>
 
             <a href="{{ route('types.create') }}"

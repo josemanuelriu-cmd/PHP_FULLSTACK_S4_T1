@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreSessions_zasRequest extends FormRequest
+class UpdateSessions_zasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +23,12 @@ class StoreSessions_zasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => 'required|date|after_or_equal:today|unique:sessions_zas,date',
+            'date' => [
+                'required',
+                'date',
+                Rule::unique('sessions_zas', 'date')
+                ->ignore($this->route('sessions_zas'), 'id'),
+            ],
             'name' => 'required|string|min:3|max:255',
             'event_name' => 'nullable|string|min:3|max:255',
             'start_time' => 'required|date_format:H:i',
@@ -31,20 +37,6 @@ class StoreSessions_zasRequest extends FormRequest
             'direction' => 'required|string|min:5|max:255',
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180'
-        ];
-    }
-    public function attributes(): array
-    {
-        return [
-            'date' => 'fecha',
-            'name' => 'lugar',
-            'event_name' => 'evento',
-            'start_time' => 'hora de inicio',
-            'end_time' => 'hora de finalización',
-            'max_users' => 'máximo de usuarios',
-            'direction' => 'dirección',
-            'latitude' => 'latitud',
-            'longitude' => 'longitud'
         ];
     }
 }
