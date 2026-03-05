@@ -9,7 +9,7 @@
 
     <div class="max-w-3xl mx-auto px-4 py-8">
 
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">➕ Añadir nuevo juego</h2>
+        <h2 class="text-3xl font-bold text-zas-primary mb-6">➕ Añadir juego</h2>
 
         <a href="{{ route('boardgames.index') }}"
         class="text-zas-primary hover:underline mb-6 inline-block">
@@ -42,7 +42,7 @@
                     Limpiar formulario
                 </button>
                 <a href="{{ route('boardgames.index') }}"
-                class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft transition text-center">Cancelar</a>
+                class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft hover:text-zas-light transition text-center">Cancelar</a>
             </div>
         </form>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBoardGameRequest;
 use Illuminate\Http\Request;
 use App\Models\boardgames;
+use App\Models\types;
 
 class BoardgamesController extends Controller
 {
@@ -15,26 +16,40 @@ class BoardgamesController extends Controller
     }
     public function show(boardgames $boardgame)
     {
-        return $boardgame;
-        return view('boardgames.show', ['boardgame' => $boardgame]);
+        $boardgame->load('types'); // carga los tipos del juego
+        $types = Types::orderBy('type')->get(); // todos los tipos disponibles
+        return view('boardgames.show', [
+            'boardgame' => $boardgame,
+            'types' => $types
+            ]);
     }
     public function create()
     {
-        return view('boardgames.create');
+        $types = Types::orderBy('type')->get(); // todos los tipos disponibles
+        return view('boardgames.create', [
+            'types' => $types
+            ]);
     }    
     public function edit(Boardgames $boardgame)
     {
-        return view('boardgames.edit', ['boardgame' => $boardgame]);
+        $boardgame->load('types'); // carga los tipos del juego
+        $types = Types::orderBy('type')->get(); // todos los tipos disponibles
+        return view('boardgames.edit', [
+            'boardgame' => $boardgame,
+            'types' => $types
+            ]);
     }
     public function store(StoreBoardGameRequest $request)
     {
-        Boardgames::create($request->all());        
-        return redirect()->route('boardgames.index');
+        $boardgame=Boardgames::create($request->validate());
+        $boardgame->types()->sync($request->types ?? []);
+        
+        return redirect()->route('boardgames.show', $boardgame)->with('success','Juego creado');
     }
     public function destroy(Boardgames $boardgame)
     {
         $boardgame->delete();
-        return redirect()->route('boardgames.index');
+        return redirect()->route('boardgames.index')->with('success', 'Juego eliminado');
     }
     public function update(Request $request, Boardgames $boardgame)
     {
@@ -49,6 +64,8 @@ class BoardgamesController extends Controller
         ]);
 
         $boardgame->update($request->all());
-        return redirect()->route('boardgames.show', $boardgame);
+        $boardgame->types()->sync($request->types ?? []);
+        //return redirect()->route('boardgames.show', $boardgame);
+        return redirect()->route('boardgames.show', $boardgame)->with('success','Juego actualizado');
     }
 }

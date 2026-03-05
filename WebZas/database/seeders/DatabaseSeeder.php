@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             BoardGamesSeeder::class,
             sessions_zasSeeder::class,
             typesSeeder::class,
-            boardgames_has_typesSeeder::class,
+            boardgame_typeSeeder::class,
         ]);
 
        

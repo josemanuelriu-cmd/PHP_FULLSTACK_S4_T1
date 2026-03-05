@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Boardgames_has_types extends Model
+class Boardgame_type extends Model
 {
     //
 }

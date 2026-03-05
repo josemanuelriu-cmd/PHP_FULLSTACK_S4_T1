@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boardgames_has_types', function (Blueprint $table) {
+        Schema::create('boardgame_type', function (Blueprint $table) {
             $table->id();
             $table->foreignId('boardgame_id')->constrained('boardgames')->onDelete('cascade');
-            $table->foreignId('type_id')->constrained('types')->onDelete('cascade');            
-            //$table->timestamps();
+            $table->foreignId('type_id')->constrained('types')->onDelete('cascade'); 
+            $table->timestamps();
+            $table->unique(['boardgame_id','type_id']);           
+            
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boardgames_has_types');
+        Schema::dropIfExists('boardgame_type');
     }
 };
