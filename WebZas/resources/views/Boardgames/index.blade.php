@@ -10,9 +10,15 @@
                       hover:bg-zas-primaryHover transition shadow-lg">
                 + Añadir juego
             </a>
+
         </div>
     </x-slot>
-
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    
     <div class="max-w-6xl mx-auto px-4 py-10 ">
         @if($boardgames->count())
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

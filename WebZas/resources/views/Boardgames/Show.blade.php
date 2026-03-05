@@ -15,6 +15,12 @@
             ← Volver al listado
         </a>
 
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="bg-white border border-zas-primary
                     rounded-2xl p-10 mt-6 shadow-2xl">
 
@@ -37,8 +43,15 @@
                     <p><span class="text-gray-700 font-semibold">⏳ Duración:</span>
                         <span class="text-zas-primary font-semibold">{{ $boardgame->duration }} minutos</span>
                     </p>
+                    <p><span class="text-gray-700 font-semibold">🧮 Tipos:</span>
+                    <span class="text-zas-primary font-semibold">
+                        @foreach($boardgame->types as $type)
+                            {{ $type->type }},
+                        @endforeach
+                    </span>
+                </p>
                 </div>
-            </div>
+            </div>            
 
             <div class="mt-8 border-t border-zas-primary/30 pt-6">
                 <h3 class="text-xl font-semibold text-gray-700 mb-3">Descripción</h3>

@@ -55,4 +55,15 @@ class Boardgames extends Model
     {
         return 'slug';
     }
+
+    //relacion muchos a muchos con la tabla types. Mirar video muhos a muchos min 12/13
+    public function types()
+    {
+        return $this->belongsToMany(
+            Types::class, 
+            'boardgame_type', 
+            'boardgame_id', 
+            'type_id'
+        )->withTimestamps();
+    }
 }

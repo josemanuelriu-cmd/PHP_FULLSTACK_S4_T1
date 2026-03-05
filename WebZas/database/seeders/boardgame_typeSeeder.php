@@ -6,15 +6,14 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class boardgames_has_typesSeeder extends Seeder
+class boardgame_typeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        
-        DB::table('boardgames_has_types')->insert([
+        DB::table('boardgame_type')->insert([
             [
                 'boardgame_id' => 1, // Catan
                 'type_id' => 10, // estrategia

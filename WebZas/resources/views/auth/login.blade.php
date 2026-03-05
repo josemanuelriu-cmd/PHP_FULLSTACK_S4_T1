@@ -17,13 +17,17 @@
             <!-- Email -->
             <div>
                 <x-label for="email" :value="__('Email')" class="text-zas-dark"/>
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" 
+                value="ryuadmin@zas.es" 
+                required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" class="text-zas-dark"/>
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" 
+                value="RyuAdmin" 
+                required autocomplete="current-password" />
             </div>
 
             <!-- Remember Me -->
