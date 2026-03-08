@@ -5,7 +5,7 @@
                 📅 {{ __('Sesiones') }}
             </h2>
 
-            <a href="{{ route('sessions_zas.create') }}"
+            <a href="{{ route('zassessions.create') }}"
                class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
                       hover:bg-zas-primaryHover transition shadow-lg">
                 + Añadir sesión
@@ -14,9 +14,9 @@
     </x-slot>
 
     <div class="max-w-6xl mx-auto px-4 py-10 ">
-        @if($sessions_zas->count())
+        @if($zassessions->count())
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach ($sessions_zas as $session)
+                @foreach ($zassessions as $session)
                     <div class="bg-zas-light border border-zas-primary/20
                                 rounded-xl p-6 shadow-md
                                 hover:shadow-xl hover:border-zas-primary transition">
@@ -40,7 +40,7 @@
                             <span class=" font-semibold">📍{{ $session->direction }}</span>
                         </p>
 
-                        <a href="{{ route('sessions_zas.show', $session) }}"
+                        <a href="{{ route('zassessions.show', $session) }}"
                            class="text-zas-primary font-semibold hover:underline">
                             Ver ficha →
                         </a>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="mt-10">
-                {{ $sessions_zas->links() }}
+                {{ $zassessions->links() }}
             </div>
         @else
             <p class="text-zas-gray">Aún no hay sesiones registradas.</p>

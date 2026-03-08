@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 
-class Sessions_zas extends Model
+class Zassessions extends Model
 {
-    protected $table = 'sessions_zas';
+    protected $table = 'zassessions';
 
     protected $fillable = ['date', 'name', 'event_name', 'start_time', 'end_time', 'max_users', 'direction', 'latitude', 'longitude'];
 

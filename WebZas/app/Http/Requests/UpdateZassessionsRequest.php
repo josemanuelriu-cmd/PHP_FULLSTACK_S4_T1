@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateSessions_zasRequest extends FormRequest
+class UpdateZassessionsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,8 @@ class UpdateSessions_zasRequest extends FormRequest
             'date' => [
                 'required',
                 'date',
-                Rule::unique('sessions_zas', 'date')
-                ->ignore($this->route('sessions_zas'), 'id'),
+                Rule::unique('Zassessions', 'date')
+                ->ignore($this->route('zassessions'), 'id'),
             ],
             'name' => 'required|string|min:3|max:255',
             'event_name' => 'nullable|string|min:3|max:255',

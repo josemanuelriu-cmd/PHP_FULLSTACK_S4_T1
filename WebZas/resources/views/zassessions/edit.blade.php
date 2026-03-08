@@ -12,17 +12,17 @@
 
         <h2 class="text-3xl font-bold text-gray-800 mb-6">✏ Editar sessión</h2>
 
-        <a href="{{ route('sessions_zas.show', $session_zas) }}"
+        <a href="{{ route('zassessions.show', $zassession) }}"
         class="text-zas-primary hover:underline mb-6 inline-block">
             ← Volver
         </a>
 
-        <form action="{{ route('sessions_zas.update', $session_zas) }}" method="post"
+        <form action="{{ route('zassessions.update', $zassession) }}" method="post"
             class="bg-white shadow-lg rounded-xl p-6 space-y-4 border border-zas-primary/30">
             @csrf
             @method('PUT')
 
-            @include('sessions_zas.Form', ['session_zas' => $session_zas])
+            @include('zassessions.Form', ['zassession' => $zassession])
 
             <div  class="grid md:grid-cols-3 gap-4">
                 <button type="submit"
@@ -33,7 +33,7 @@
                     class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition">
                     Limpiar formulario
                 </button>
-                <a href="{{ route('sessions_zas.index') }}"
+                <a href="{{ route('zassessions.index') }}"
                 class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft transition text-center">Cancelar</a>
             </div>
         

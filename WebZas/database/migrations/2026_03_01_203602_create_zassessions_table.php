@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions_zas', function (Blueprint $table) {
+        Schema::create('zassessions', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('name');//nombre del lugar. Can verdaguer, Ate, etc
             $table->string('event_name')->nullable();//nombre del evento. Si es una sesión normal de zas, A rol, LNMLMCDJ, etc
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions_zas');
+        Schema::dropIfExists('zassessions');
     }
 };
