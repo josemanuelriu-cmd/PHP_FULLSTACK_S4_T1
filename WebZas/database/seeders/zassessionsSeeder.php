@@ -6,14 +6,14 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class sessions_zasSeeder extends Seeder
+class zassessionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('sessions_zas')->insert([
+        DB::table('zassessions')->insert([
             [
                 'date' => '2026-03-06',
                 'name' => 'Can Verdaguer',

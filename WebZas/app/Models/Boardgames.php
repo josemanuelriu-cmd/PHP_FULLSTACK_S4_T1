@@ -66,4 +66,42 @@ class Boardgames extends Model
             'type_id'
         )->withTimestamps();
     }
+
+    public function scopeOfType($query, $typeId)
+    {
+        if ($typeId) {
+            $query->whereHas('types', function($q) use ($typeId) {
+                $q->where('types.id', $typeId);
+            });
+        }
+    }
+
+    public function scopeSearchName($query, $name)
+    {
+        if ($name) {
+            $query->where('name', 'like', "%{$name}%");
+        }
+    }
+
+    public function scopePlayers($query, $players)
+    {
+        if ($players) {
+            $query->where('min_players', '<=', $players)
+                  ->where('max_players', '>=', $players);
+        }
+    }
+
+    public function scopeAge($query, $age)
+    {
+        if ($age) {
+            $query->where('min_age', '<=', $age);
+        }
+    }
+    public function scopeDuration($query, $duration)
+    {
+        if ($duration) {
+            $query->where('duration', '<=', $duration);
+        }
+    }
+    
 }

@@ -9,10 +9,23 @@ use App\Models\types;
 
 class BoardgamesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        /*
         $boardgames = Boardgames::orderBy('name', 'asc')->paginate(9);
         return view('boardgames.index', ['boardgames' => $boardgames]);
+        */
+        $boardgames = Boardgames::with('types')
+        ->ofType($request->type)
+        ->searchName($request->name)
+        ->players($request->players)
+        ->age($request->age)
+        ->duration($request->duration)
+        ->paginate(9);
+
+        $types = Types::orderBy('type')->get();
+
+        return view('boardgames.index', compact('boardgames','types'));
     }
     public function show(boardgames $boardgame)
     {

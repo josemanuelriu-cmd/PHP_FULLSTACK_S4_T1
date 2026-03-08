@@ -32,7 +32,7 @@
         <div class="hidden sm:flex sm:items-center sm:justify-between">
 
             <div>
-                <p class="text-sm text-zas-dark">
+                <p class="text-sm text-zas-primary">
                     {!! __('Showing') !!}
                     @if ($paginator->firstItem())
                         <span class="font-semibold">{{ $paginator->firstItem() }}</span>
