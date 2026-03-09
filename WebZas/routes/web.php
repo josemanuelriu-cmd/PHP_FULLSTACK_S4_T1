@@ -34,11 +34,18 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('types', TypesController::class);
 });
 
-
 Route::middleware(['auth'])->group(function () {
     Route::resource('zassessions', ZassessionsController::class)
     ->parameters(['zassessions' => 'zassessions'
     ]);        
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/zassessions/{zassession}/join', [ZassessionsController::class, 'join'])
+        ->name('zassessions.join');
+
+    Route::delete('/zassessions/{zassession}/leave', [ZassessionsController::class, 'leave'])
+        ->name('zassessions.leave');
 });
 
 require __DIR__.'/auth.php';

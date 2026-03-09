@@ -5,18 +5,26 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreZassessionsRequest;
 use App\Http\Requests\UpdateZassessionsRequest;
 use Illuminate\Http\Request;
-use App\Models\Zassessions;
+use App\Models\zassessions;
+use App\Models\user;
+use Illuminate\Support\Facades\Auth;
 
 class ZassessionsController extends Controller
 {
     public function index()
-    {        
+    {            
         $Zassessions = Zassessions::orderBy('date', 'asc')->paginate(6);
-        return view('Zassessions.index', ['zassessions' => $Zassessions]);
+        $Users = User::orderBy('nickname')->get();
+        return view('Zassessions.index', ['zassessions' => $Zassessions, 'users' => $Users]);
     }
     public function show(Zassessions $Zassession)
     {
-        return view('Zassessions.show', ['zassession' => $Zassession]);
+        $Zassession->load('Users');
+        $Users = User::orderBy('nickname')->get(); // todos los usuarios disponibles
+        return view('Zassessions.show', [
+            'zassession' => $Zassession,
+            'users' => $Users
+            ]);
     }
     public function create()
     {
@@ -58,5 +66,25 @@ class ZassessionsController extends Controller
 
         $Zassession->update($request->all());
         return redirect()->route('Zassessions.show', $Zassession);
+    }
+    
+    public function join(Zassessions $zassession)
+    {
+        $user = Auth::user();
+
+        if (!$zassession->users()->where('user_id', $user->id)->exists()) {
+            $zassession->users()->attach($user->id);
+        }
+
+        return redirect()->route('zassessions.show', $zassession)
+            ->with('success', 'Te has apuntado a la sesión');
+    }
+    public function leave(Zassessions $zassession)
+    {
+        $zassession->users()->detach(Auth::id());
+
+        return redirect()
+            ->route('zassessions.show', $zassession)
+            ->with('success', 'Te has borrado de la sesión');
     }
 }

@@ -24,6 +24,7 @@ class BoardGamesFactory extends Factory
             'min_age' => fake()->numberBetween(8, 18),
             'duration' => fake()->numberBetween(30, 180),
             'description' => fake()->text(),
+            'owner_user_id' => null
         ];
     }
 }

@@ -103,5 +103,9 @@ class Boardgames extends Model
             $query->where('duration', '<=', $duration);
         }
     }
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_user_id');
+    }
     
 }

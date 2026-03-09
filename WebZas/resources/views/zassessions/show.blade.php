@@ -8,6 +8,12 @@
         </div>
     </x-slot>
 
+@php
+    $user = auth()->user();
+    $isJoined = $zassession->users->contains($user->id);
+    $isFull = $zassession->users->count() >= $zassession->max_users;
+@endphp
+
     <div class="max-w-4xl mx-auto px-4 py-10">
 
         <a href="{{ route('zassessions.index') }}"
@@ -27,7 +33,8 @@
                         {{ \Carbon\Carbon::parse($zassession->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($zassession->end_time)->format('H:i') }}
                     </span>
                 </p>
-                <p><span class="text-zas-gray font-semibold">👥 {{ $zassession->max_users }}</span>
+                <p><span class="text-zas-gray font-semibold">👥 {{ $zassession->users->count() }}/{{ $zassession->max_users }}</span>
+                    
                 </p>
             </div>
 
@@ -42,8 +49,17 @@
                 </p>
             </div>
 
-            <div class="mt-8 border-t border-zas-primary/30 pt-6">
-                <iframe src="https://maps.google.com/maps?q={{ $zassession->latitude ?? '' }},{{  $zassession->longitude ?? '' }}"></iframe>
+            <div class="grid md:grid-cols-2 gap-8 mt-8 border-t border-zas-primary/30 pt-6">
+                <div class="">
+                    <iframe src="https://maps.google.com/maps?q={{ $zassession->latitude ?? '' }},{{  $zassession->longitude ?? '' }}&z=ZOOM&output=embed"></iframe>
+                </div>
+                <div> <h3 class="text-zas-primary font-semibold"> Usuarios apuntados</h3>
+                    <ul class="text-zas-gray">
+                    @foreach($zassession->users as $user)
+                        <li>{{ $user->nickname }} </li>
+                    @endforeach
+                    </ul>
+                </div>
             </div>
 
             <div class="flex gap-4 mt-10">
@@ -63,8 +79,31 @@
                         Borrar
                     </button>
                 </form>
-                
+                @if(!$isJoined && !$isFull)
+                    <form method="POST" action="{{ route('zassessions.join', $zassession) }}">
+                        @csrf
+                        <button type="submit"
+                            class="bg-zas-gray px-4 py-2 rounded-lg text-zas-primary hover:bg-zas-primaryhover transition">
+                            Apuntarse a la sesión
+                        </button>
+                    </form>
+                @endif
+                @if($isJoined)
+                    <form method="POST" action="{{ route('zassessions.leave', $zassession) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="bg-zas-gray px-4 py-2 rounded-lg text-zas-primary hover:bg-zas-primaryhover transition">
+                            Borrarse de la sessión
+                        </button>
+                    </form>
+                @endif
+
             </div>
+            @if(session('success'))
+                <div class="bg-green-200 text-green-800 p-3 rounded mb-4 mt-4">
+                    {{ session('success') }}
+                </div>
+            @endif
 
         </div>
 

@@ -101,7 +101,15 @@
 
                         <p class="text-zas-gray mb-2">👥 {{ $boardgame->min_players }} - {{ $boardgame->max_players }} jugadores</p>
                         <p class="text-zas-gray mb-2">🎂 {{ $boardgame->min_age }}+ años</p>
-                        <p class="text-zas-gray mb-4">⏳ {{ $boardgame->duration }} minutos</p>
+                        <p class="text-zas-gray mb-2">⏳ {{ $boardgame->duration }} minutos</p>
+
+                        <p class="text-zas-gray mb-4">👑
+                            @if($boardgame->owner)
+                                {{ $owner = $boardgame->owner->nickname }}
+                            @else
+                                {{ $owner = 'ZAS' }}
+                            @endif
+                         </p>
 
                         <a href="{{ route('boardgames.show', $boardgame) }}"
                            class="text-zas-primary font-semibold hover:underline">

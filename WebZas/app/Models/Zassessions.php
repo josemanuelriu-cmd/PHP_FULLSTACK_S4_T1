@@ -33,4 +33,15 @@ class Zassessions extends Model
             'longitude' => 'float',
         ];
      }
+
+    //relacion muchos a muchos con la tabla users. Mirar video muhos a muchos min 12/13
+    public function users()
+    {
+        return $this->belongsToMany(
+            User::class, 
+            'user_zassession',             
+            'zassession_id',
+            'user_id', 
+        );
+    }
 }
