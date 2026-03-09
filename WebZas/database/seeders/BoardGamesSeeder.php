@@ -24,6 +24,7 @@ class BoardGamesSeeder extends Seeder
                 'min_age' => 10,
                 'duration' => 90,
                 'description' => 'Juego de comercio y estrategia',
+                'owner_user_id' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -35,6 +36,7 @@ class BoardGamesSeeder extends Seeder
                 'min_age' => 8,
                 'duration' => 45,
                 'description' => 'Construcción de territorio',
+                'owner_user_id' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

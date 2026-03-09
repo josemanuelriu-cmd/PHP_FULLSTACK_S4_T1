@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -45,4 +46,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //relacion muchos a muchos con la tabla zassession. Mirar video muhos a muchos min 12/13
+    public function zassession()
+    {
+        return $this->belongsToMany(
+            Zassessions::class, 
+            'user_zassession', 
+            'user_id', 
+            'zassession_id'
+        );
+    }
+    
 }

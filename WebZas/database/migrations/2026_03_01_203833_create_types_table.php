@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['abstracto', 'ameritrash', 'cartas', 'clásico', 'colocación de trabajadores', 'construcción de mazos', 'cooperativo', 'dados', 'escape room', 'estrategia', 'eurogame', 'familiar', 'filler', 'infantil', 'investigacion', 'mayorias', 'narrativo', 'party', 'roles ocultos', 'wargame']);
+            $table->mediumText('description')->nullable();
             $table->timestamps();
         });
     }
