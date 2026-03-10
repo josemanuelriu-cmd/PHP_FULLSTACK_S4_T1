@@ -39,10 +39,12 @@ class TypesController extends Controller
     public function update(Request $request, Types $type)
     {
         $request->validate([
-            'name' => 'required|string|min:3|max:255|unique:types,type'            
+            'type' => 'required|string|min:3|max:255|unique:types,type,' . $type->id,
+            'description' => 'nullable|string'
         ]);
 
         $type->update($request->all());
-        return redirect()->route('types.show', $type);
+        $type->boardgames()->sync($request->boardgames ?? []);
+        return redirect()->route('types.show', $type)->with('success','Tipo actualizado');
     }
 }

@@ -12,9 +12,7 @@
 <div>
     <label class="block font-medium text-gray-700">Descripción</label>
     <textarea name="description"
-        class="w-full mt-1 border-zas-primary border rounded-lg shadow-sm focus:ring-zas-primary focus:border-zas-primary pl-2 resize-none">
-        {{ old('type', $type->Description ?? '') }}
-    </textarea>
+        class="w-full mt-1 border-zas-primary border rounded-lg shadow-sm focus:ring-zas-primary focus:border-zas-primary pl-2 resize-none">{{ old('description', $type->description ?? '') }}</textarea>
     @error('description') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
 </div>
 
