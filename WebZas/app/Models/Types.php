@@ -9,7 +9,7 @@ class Types extends Model
 {
     protected $table = 'types';
 
-    protected $fillable = ['type'];
+    protected $fillable = ['type', 'description'];
 
     protected function name(): CastsAttribute
     {
@@ -31,8 +31,8 @@ class Types extends Model
         return $this->belongsToMany(
             Boardgames::class, 
             'boardgame_type', 
-            'boardgame_id', 
-            'type_id'
+            'type_id',
+            'boardgame_id'            
         )->withTimestamps();
     }
 }
