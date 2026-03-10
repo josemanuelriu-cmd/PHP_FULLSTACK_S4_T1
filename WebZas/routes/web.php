@@ -1,25 +1,52 @@
 <?php
 
-use App\Models\Sessions_zas;
 use App\Models\Zassessions;
 use App\Http\Controllers\BoardGamesController;
 use App\Http\Controllers\TypesController;
-use App\Http\Controllers\Sessions_zasController;
 use App\Http\Controllers\ZassessionsController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Boardgames;
 use Illuminate\Support\Facades\Route;
 
-// Binding manual para sessions_zas, para evitar que el binding automático busque por id. En su lugar, buscará por el campo que se le indique (en nuestro caso, 'date').
+// Binding manual para Zassessions
 Route::bind('zassessions', function ($value) {
     return Zassessions::findOrFail($value);
 });
 
+// Ruta principal
 Route::get('/', function () {
     return redirect()->route('boardgames.index');
-    //return redirect()->route('auth.login');
 });
 
+// Rutas que requieren autenticación
+Route::middleware('auth')->group(function () {
+
+    // admin: CRUD usuarios
+    Route::middleware('check.type:admin')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    // admin y junta: CRUD tipos, juegos y sessiones
+    Route::middleware('check.type:admin,junta')->group(function () {
+        Route::resource('types', TypesController::class);        
+    });
+
+    // admin, junta y partner: ver tipos, juegos, sessiones, partidas, crear partidas
+    Route::middleware('check.type:admin,junta,partner')->group(function () {   
+        Route::resource('boardgames', BoardGamesController::class);     
+        Route::resource('zassessions', ZassessionsController::class)
+            ->parameters(['zassessions' => 'zassessions']);
+    });
+
+    // todos los usuarios: Apuntarse/borrarse de una sesión
+    Route::post('/zassessions/{zassession}/join', [ZassessionsController::class, 'join'])
+        ->name('zassessions.join');
+    Route::delete('/zassessions/{zassession}/leave', [ZassessionsController::class, 'leave'])
+        ->name('zassessions.leave');
+});
+
+/*
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -47,5 +74,5 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/zassessions/{zassession}/leave', [ZassessionsController::class, 'leave'])
         ->name('zassessions.leave');
 });
-
+*/
 require __DIR__.'/auth.php';
