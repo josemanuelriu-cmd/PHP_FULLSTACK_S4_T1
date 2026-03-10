@@ -11,15 +11,23 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <!-- Todos: Juegos -->
                     <x-nav-link :href="route('boardgames.index')" :active="request()->routeIs('boardgames.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('Juegos') }}
                     </x-nav-link>
+                     <!-- Admin: Perfil -->
+                    @if(Auth::user()->type === 'admin')
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('Perfil') }}
                     </x-nav-link>
+                    @endif
+                     <!-- Admin y junta: Tipos -->
+                    @if(in_array(Auth::user()->type, ['admin', 'junta']))
                     <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('Tipos') }}
                     </x-nav-link>
+                    @endif
+                    <!-- Todos: Sesiones -->
                     <x-nav-link :href="route('zassessions.index')" :active="request()->routeIs('zassessions.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('Sesiones') }}
                     </x-nav-link>
