@@ -21,7 +21,9 @@
             <h2 class="text-4xl font-bold text-zas-primary mb-8">
                 {{ $type->type }}
             </h2>
-
+            <p>
+                {{ $type->description }}
+            </p>
 
             <div class="flex gap-4 mt-10">
                 <a href="{{ route('types.edit', $type) }}"
