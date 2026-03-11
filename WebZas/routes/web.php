@@ -5,6 +5,7 @@ use App\Http\Controllers\BoardGamesController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\ZassessionsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GamesController;
 use Illuminate\Support\Facades\Route;
 
 // Binding manual para Zassessions
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('boardgames', BoardGamesController::class);     
         Route::resource('zassessions', ZassessionsController::class)
             ->parameters(['zassessions' => 'zassessions']);
+        Route::get('/zassessions/{zassession}/games/create', [GamesController::class, 'create'])
+            ->name('games.create');
+        Route::post('/zassessions/{zassession}/games', [GamesController::class, 'store']
+            )->name('games.store');
     });
 
     // todos los usuarios: Apuntarse/borrarse de una sesión
