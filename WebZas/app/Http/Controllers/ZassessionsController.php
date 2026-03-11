@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreZassessionsRequest;
 use App\Http\Requests\UpdateZassessionsRequest;
+use App\Models\Boardgames;
 use Illuminate\Http\Request;
 use App\Models\zassessions;
 use App\Models\user;
@@ -19,11 +20,16 @@ class ZassessionsController extends Controller
     }
     public function show(Zassessions $Zassession)
     {
-        $Zassession->load('Users');
-        $Users = User::orderBy('nickname')->get(); // todos los usuarios disponibles
+        $Zassession->load([
+            'users',
+            'games.boardgame',
+            'games.players',
+            'games.host'
+            ]);
+        $users = User::orderBy('nickname')->get(); // todos los usuarios disponibles
         return view('Zassessions.show', [
             'zassession' => $Zassession,
-            'users' => $Users
+            'users' => $users
             ]);
     }
     public function create()
@@ -86,5 +92,41 @@ class ZassessionsController extends Controller
         return redirect()
             ->route('zassessions.show', $zassession)
             ->with('success', 'Te has borrado de la sesión');
+    }
+
+    public function createGame(Zassessions $zassession)
+    {
+        //$user = auth()->user();
+        $user = Auth::user();
+
+        // Usuarios que pueden jugar (los apuntados a la sesión)
+        $users = $zassession->users;
+
+        // Juegos disponibles
+        $boardgames = \App\Models\Boardgames::where(function ($query) use ($user) {
+            $query->where('owner_user_id',  $user->id)
+                ->orWhere('owner_user_id', null);
+        })->orderBy('name')->get();
+
+        return view('zassessions.games.create', [
+            'zassession' => $zassession,
+            'users' => $users,
+            'boardgames' => $boardgames
+        ]);
+            
+    }
+
+    public function storeGame(Request $request, Zassessions $zassession)
+    {
+        $request->validate([
+            'boardgame_id' => 'required|exists:boardgames,id',
+            'players' => 'required|array|min:1'
+        ]);
+
+        // aquí guardarías la partida
+
+        return redirect()
+            ->route('zassessions.show', $zassession)
+            ->with('success', 'Partida creada');
     }
 }

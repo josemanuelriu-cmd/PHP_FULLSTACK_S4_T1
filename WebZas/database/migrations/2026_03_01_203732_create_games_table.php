@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id()->primary();
-            $table->boolean('necesary_know_how');
+            
+            $table->foreignId('zassession_id')->constrained('zassessions')->onDelete('cascade');
             $table->foreignId('boardgame_id')->constrained('boardgames')->onDelete('cascade');
-            $table->foreignId('session_id')->constrained('zassessions')->onDelete('cascade');
+            $table->foreignId('host_user_id')->constrained('users');
+
+            $table->integer('max_players')->nullable();
+            $table->time('start_time');
+            $table->enum('status', ['open','limited','playing','finished'])->default('open');
+            $table->boolean('necesary_know_how');
+            
             $table->timestamps();
         });
     }
