@@ -6,7 +6,8 @@ use App\Http\Requests\StoreGameRequest;
 use Illuminate\Http\Request;
 use App\Models\zassessions;
 use App\Models\boardgames;
-use App\Models\user;
+use App\Models\Boardgames as ModelsBoardgames;
+//use App\Models\user;
 use App\Models\games;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +37,6 @@ class GamesController extends Controller
     }
     public function store(StoreGameRequest $request, Zassessions $zassession)
     {
-
         $boardgame = Boardgames::findOrFail($request->boardgame_id);
 
         // crear partida
@@ -56,5 +56,93 @@ class GamesController extends Controller
         return redirect()
             ->route('zassessions.show',$zassession)
             ->with('success','Partida creada correctamente');
+    }
+    public function show(zassessions $zassession, Games $game)
+    {
+        $game->load(['boardgame','players','host']);
+        return view('games.show', [
+            'zassession' => $zassession,
+            'game' => $game
+            ]);
+    }
+
+    public function join(Zassessions $zassession, Games $game)
+    {
+        $user = Auth::user();
+        $game->load('players');
+
+        if (!$game->players()->where('user_id', $user->id)->exists()) {
+            $game->players()->attach($user->id);
+        }
+
+        return redirect()->route('games.show', [$zassession, $game])
+            ->with('success', 'Te has apuntado a la partida');
+    }
+    public function leave(Zassessions $zassession, Games $game)
+    {
+        $game->players()->detach(Auth::id());
+
+        return redirect()
+            ->route('games.show', [$zassession, $game])
+            ->with('success', 'Te has borrado de la partida');
+    }
+
+    public function destroy(Zassessions $zassession, Games $game)
+    {
+        $game->delete();
+
+        return redirect()
+            ->route('zassessions.show', ['zassessions' => $zassession])
+            ->with('success','Partida eliminada');
+    }
+    public function close(Zassessions $zassession, Games $game)
+    {
+        $game->update([
+            'status' => 'playing'
+        ]);
+
+        return redirect()
+            ->route('games.show', [$zassession, $game])
+            ->with('success', 'Partida cerrada');
+    }
+    public function reopen(Zassessions $zassession, Games $game)
+    {
+        $game->update([
+            'status' => 'open'
+        ]);
+
+        return redirect()
+            ->route('games.show', [$zassession, $game])
+            ->with('success', 'Partida reabierta');
+    }
+
+    public function update(Request $request, Zassessions $zassession, Games $game)
+    {
+        $request->validate([
+            'start_time' => 'required|string', 
+            'status' => 'required|string',
+            'necesary_know_how' => 'nullable|boolean'
+        ]);
+
+        $game->update($request->all());
+        $game->players()->sync($request->players ?? []);
+
+        return redirect()
+            ->route('games.show', [$zassession, $game])
+            ->with('success','Partida actualizada');
+    }
+    public function edit(Zassessions $zassession, Games $game)
+    {        
+        $game->load(['players','boardgame']);
+        
+        $boardgames = Boardgames::orderBy('name')->get();
+        $users = $zassession->users;
+        
+        return view('games.edit',[
+            'zassession' => $zassession,
+            'game' => $game,
+            'boardgames' => $boardgames,
+            'users' => $users
+        ]);
     }
 }
