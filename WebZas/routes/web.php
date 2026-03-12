@@ -6,6 +6,7 @@ use App\Http\Controllers\TypesController;
 use App\Http\Controllers\ZassessionsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 // Binding manual para Zassessions
@@ -65,6 +66,11 @@ Route::middleware('auth')->group(function () {
         ->name('games.join');
     Route::delete('/zassessions/{zassession}/games/{game}/leave', [GamesController::class, 'leave'])
         ->name('games.leave');
+    Route::fallback(function () {
+        return response()->view('errors.404', [], 404);
+    });
+
+    Route::get('/post/{id}', [PostController::class, 'show']);
     
 });
 
