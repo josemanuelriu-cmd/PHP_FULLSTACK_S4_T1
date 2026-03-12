@@ -28,7 +28,7 @@
                 <div class="flex flex-col">
                     <label for="name" class="text-zas-primary font-semibold">Nombre</label>
                     <input type="text" name="name" id="name" value="{{ request('name') }}"
-                        class="text-zas-gray border rounded-lg px-3 py-2 w-48 border-zas-primary focus:border-zas-primary focus:ring-zas-primary" placeholder="Buscar nombre">
+                        class="text-zas-gray border rounded-lg px-3 py-2 w-48 border-zas-primary focus:border-zas-primary focus:ring-zas-primary">
                 </div>
 
                 <!-- Filtrar por tipo -->

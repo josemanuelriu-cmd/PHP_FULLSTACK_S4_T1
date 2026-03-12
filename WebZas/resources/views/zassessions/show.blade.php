@@ -114,21 +114,33 @@
                     @if($zassession->games->count() > 0)
                         <ul class="text-zas-gray space-y-3">
                             @foreach($zassession->games as $game)
-                                <li class="border border-zas-primary/30 rounded-lg p-3">
-                                    🎲 <span class="font-semibold">
-                                        {{ $game->boardgame->name }} - {{ \Carbon\Carbon::parse($game->start_time)->format('H:i') }}                                        
-                                    </span>
-                                    <div class="text-sm mt-1">
-                                        👤 {{ $game->players->count() }}/{{ $game->max_players }}
-                                        • Organiza: {{ $game->host->nickname }}
-                                    </div>
-                                    <div class="text-sm mt-1">
-                                        Jugadores:
-                                        @foreach($game->players as $player)
-                                            <span class="inline-block mr-2">{{ $player->nickname }},</span>
-                                        @endforeach
-                                    </div>
-                                </li>
+                                <a href="{{ route('games.show', [$zassession, $game]) }}" class="cursor-pointer space-y-3"> 
+                                    <li class="border border-zas-primary/30 rounded-lg p-3">
+                                        <span class="font-semibold">
+                                            🎲 {{ $game->boardgame->name }}{{ $game->status==='limited' ? '*':'' }}
+                                            - {{ \Carbon\Carbon::parse($game->start_time)->format('H:i') }}                                            
+                                        </span>
+                                        <div class="text-sm mt-1">
+@php
+$isGameFull = $game->players->count() >= $game->max_players;
+$isGameStarted = $game->status === 'playing';
+$isGameClosed = $game->status === 'finished';
+@endphp                                            
+                                            👤 {{ $game->players->count() }}/{{ $game->max_players }}
+                                            @if ($isGameStarted || $isGameClosed) 🔴
+                                            @elseif ($isGameFull) 🟠
+                                            @else 🟢                                                
+                                            @endif
+                                            👑 Organiza: {{ $game->host->nickname }}
+                                        </div>
+                                        <div class="text-sm mt-1">
+                                            Jugadores:
+                                            @foreach($game->players as $player)
+                                                <span class="inline-block mr-2">{{ $player->nickname }},</span>
+                                            @endforeach
+                                        </div>
+                                    </li>
+                                </a>
                             @endforeach
                         </ul>
                     @else

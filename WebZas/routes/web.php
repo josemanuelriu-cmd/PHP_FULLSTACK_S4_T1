@@ -40,44 +40,33 @@ Route::middleware('auth')->group(function () {
             ->parameters(['zassessions' => 'zassessions']);
         Route::get('/zassessions/{zassession}/games/create', [GamesController::class, 'create'])
             ->name('games.create');
-        Route::post('/zassessions/{zassession}/games', [GamesController::class, 'store']
-            )->name('games.store');
+        Route::post('/zassessions/{zassession}/games', [GamesController::class, 'store'])
+            ->name('games.store');
+        Route::get('/zassessions/{zassession}/games/{game}/edit', [GamesController::class, 'edit'])
+            ->name('games.edit');
+        Route::delete('/zassessions/{zassession}/games/{game}/destroy', [GamesController::class, 'destroy'])
+            ->name('games.destroy');
+        Route::get('/zassessions/{zassession}/games/{game}/close', [GamesController::class, 'close'])
+            ->name('games.close');
+        Route::get('/zassessions/{zassession}/games/{game}/reopen', [GamesController::class, 'reopen'])
+            ->name('games.reopen');
+        Route::put('/zassessions/{zassession}/games/{game}/update', [GamesController::class, 'update'])
+            ->name('games.update');
     });
 
-    // todos los usuarios: Apuntarse/borrarse de una sesión
+    // todos los usuarios: Apuntarse/borrarse de una sesión, apuntarse a partidas
     Route::post('/zassessions/{zassession}/join', [ZassessionsController::class, 'join'])
         ->name('zassessions.join');
     Route::delete('/zassessions/{zassession}/leave', [ZassessionsController::class, 'leave'])
         ->name('zassessions.leave');
+    Route::get('/zassessions/{zassession}/games/{game}', [GamesController::class, 'show'])
+        ->name('games.show');
+    Route::post('/zassessions/{zassession}/games/{game}/join', [GamesController::class, 'join'])
+        ->name('games.join');
+    Route::delete('/zassessions/{zassession}/games/{game}/leave', [GamesController::class, 'leave'])
+        ->name('games.leave');
+    
 });
 
-/*
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-Route::middleware(['auth'])->group(function () {
-    Route::resource('boardgames', BoardGamesController::class);
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::resource('types', TypesController::class);
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::resource('zassessions', ZassessionsController::class)
-    ->parameters(['zassessions' => 'zassessions'
-    ]);        
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::post('/zassessions/{zassession}/join', [ZassessionsController::class, 'join'])
-        ->name('zassessions.join');
-
-    Route::delete('/zassessions/{zassession}/leave', [ZassessionsController::class, 'leave'])
-        ->name('zassessions.leave');
-});
-*/
 require __DIR__.'/auth.php';
