@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 
 class Boardgames extends Model
@@ -36,7 +37,14 @@ class Boardgames extends Model
             get: fn ($value) => ucwords($value), //Convierte el valor a mayúscula cada palabra al obtenerlo
             set: fn ($value) => strtolower($value) //Convierte el valor a minúscula al establecerlo
         );
+    }
+    protected static function boot()
+    {
+        parent::boot();
 
+        static::creating(function ($boardgame) {
+            $boardgame->slug = Str::slug($boardgame->name);
+        });
     }
 
     //Por defecto, Laravel asume que totos los campos son de tipo string, pero si queremos especificar el tipo de dato de cada campo, 
