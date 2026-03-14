@@ -23,7 +23,7 @@ class StoreBoardgameRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:5|max:255', //['required', 'string', 'min:5', 'max:255'] //se pueden usar ambas formas
-            'slug' => 'required|string|min:5|max:255|unique:boardgames,slug',
+            //'slug' => 'required|string|min:5|max:255|unique:boardgames,slug',
             'min_players' => 'required|integer|min:1',
             'max_players' => 'required|integer|min:1|gte:min_players',
             'min_age' => 'required|integer|min:6',
