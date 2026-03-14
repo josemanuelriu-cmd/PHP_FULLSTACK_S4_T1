@@ -12,7 +12,7 @@
 <div>
     <label class="block font-medium text-gray-700">Slug</label>
     <input type="text" name="slug"
-        value="{{ old('slung', $boardgame->slug ?? '') }}"
+        value="{{ old('slug', $boardgame->slug ?? '') }}"
         class="w-full mt-1 border-zas-primary border rounded-lg shadow-sm focus:ring-zas-primary focus:border-zas-primary pl-2">
     @error('slug') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
 </div>

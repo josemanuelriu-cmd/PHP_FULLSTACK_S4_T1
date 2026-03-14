@@ -18,34 +18,30 @@ Route::bind('zassessions', function ($value) {
     return Zassessions::findOrFail($value);
 });
 
-// Ruta principal
-/*
-Route::get('/', function () {
-    return redirect()->route('boardgames.index');
+//Rutas para admin, junta y socios
+Route::middleware(['auth','check.type:admin,junta,partner'])->group(function () {
+    Route::resource('boardgames', BoardGamesController::class)
+        ->except(['index','show']);     
+    Route::resource('zassessions', ZassessionsController::class)
+        ->parameters(['zassessions' => 'zassessions'])
+        ->except(['index','show']);
+    Route::get('/zassessions/{zassession}/games/create', [GamesController::class, 'create'])
+        ->name('games.create');
+    Route::post('/zassessions/{zassession}/games', [GamesController::class, 'store'])
+        ->name('games.store');
+    Route::get('/zassessions/{zassession}/games/{game}/edit', [GamesController::class, 'edit'])
+        ->name('games.edit');
+    Route::delete('/zassessions/{zassession}/games/{game}/destroy', [GamesController::class, 'destroy'])
+        ->name('games.destroy');
+    Route::get('/zassessions/{zassession}/games/{game}/close', [GamesController::class, 'close'])
+        ->name('games.close');
+    Route::get('/zassessions/{zassession}/games/{game}/reopen', [GamesController::class, 'reopen'])
+        ->name('games.reopen');
+    Route::put('/zassessions/{zassession}/games/{game}/update', [GamesController::class, 'update'])
+        ->name('games.update');
 });
-*/
 // Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
-
-    /*
-    // admin: CRUD usuarios
-    Route::middleware('check.type:admin')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
-    */
-
-    /*
-    // admin y junta: CRUD tipos, juegos y sessiones
-    Route::middleware('check.type:admin,junta')->group(function () {
-        Route::resource('types', TypesController::class);        
-    });*/
-
-    // admin, junta y partner: ver tipos, juegos, sessiones, partidas, crear partidas
-    /*Route::middleware('check.type:admin,junta,partner')->group(function () {   
-        
-    });*/
 
     // todos los usuarios: Apuntarse/borrarse de una sesión, apuntarse a partidas
     Route::get('/zassessions', [ZassessionsController::class, 'index'])
@@ -79,27 +75,7 @@ Route::middleware(['auth','check.type:admin'])->group(function () {
 Route::middleware(['auth','check.type:admin,junta'])->group(function () {
     Route::resource('types', TypesController::class);    
 });
-Route::middleware(['auth','check.type:admin,junta,partner'])->group(function () {
-    Route::resource('boardgames', BoardGamesController::class)
-        ->except(['index','show']);     
-    Route::resource('zassessions', ZassessionsController::class)
-        ->parameters(['zassessions' => 'zassessions'])
-        ->except(['index','show']);
-    Route::get('/zassessions/{zassession}/games/create', [GamesController::class, 'create'])
-        ->name('games.create');
-    Route::post('/zassessions/{zassession}/games', [GamesController::class, 'store'])
-        ->name('games.store');
-    Route::get('/zassessions/{zassession}/games/{game}/edit', [GamesController::class, 'edit'])
-        ->name('games.edit');
-    Route::delete('/zassessions/{zassession}/games/{game}/destroy', [GamesController::class, 'destroy'])
-        ->name('games.destroy');
-    Route::get('/zassessions/{zassession}/games/{game}/close', [GamesController::class, 'close'])
-        ->name('games.close');
-    Route::get('/zassessions/{zassession}/games/{game}/reopen', [GamesController::class, 'reopen'])
-        ->name('games.reopen');
-    Route::put('/zassessions/{zassession}/games/{game}/update', [GamesController::class, 'update'])
-        ->name('games.update');
-});
+
 
 
 require __DIR__.'/auth.php';

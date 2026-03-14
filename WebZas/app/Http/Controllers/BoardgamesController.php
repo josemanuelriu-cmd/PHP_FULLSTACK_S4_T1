@@ -54,7 +54,8 @@ class BoardgamesController extends Controller
     }
     public function store(StoreBoardGameRequest $request)
     {
-        $boardgame=Boardgames::create($request->validate());
+        //$boardgame=Boardgames::create($request->validate());
+        $boardgame=Boardgames::create($request->validated());
         $boardgame->types()->sync($request->types ?? []);
         
         return redirect()->route('boardgames.show', $boardgame)->with('success','Juego creado');

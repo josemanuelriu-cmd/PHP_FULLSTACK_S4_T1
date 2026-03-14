@@ -1,6 +1,10 @@
 @php
     $user = auth()->user();
-    $isJoined = $zassession->users->contains($user->id);
+    if ($user)
+        $isJoined = $zassession->users->contains($user->id);
+    else {
+        $isJoined = false;
+    }
     $isFull = $zassession->users->count() >= $zassession->max_users+1;//añado 1 para poder entrar 1 parsona mas del limite teorico
 
     $maxSlots = 16;

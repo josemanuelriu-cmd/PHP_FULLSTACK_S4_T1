@@ -1,15 +1,20 @@
+@php
+$user = auth()->user();
+$canManageSession = in_array($user->type, ['admin','junta']);
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
                 📅 {{ __('Sesiones') }}
             </h2>
-
-            <a href="{{ route('zassessions.create') }}"
-               class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
-                      hover:bg-zas-primaryHover transition shadow-lg">
-                + Añadir sesión
-            </a>
+            @if ($canManageSession)
+                <a href="{{ route('zassessions.create') }}"
+                class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
+                        hover:bg-zas-primaryHover transition shadow-lg">
+                    + Añadir sesión
+                </a>
+            @endif
         </div>
     </x-slot>
 

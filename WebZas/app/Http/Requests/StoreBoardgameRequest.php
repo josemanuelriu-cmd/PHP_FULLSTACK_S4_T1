@@ -28,7 +28,9 @@ class StoreBoardgameRequest extends FormRequest
             'max_players' => 'required|integer|min:1|gte:min_players',
             'min_age' => 'required|integer|min:6',
             'duration' => 'required|integer|min:1',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
+            'types' => 'nullable|array',
+            'types.*' => 'exists:types,id'
         ];
     }
     /*
