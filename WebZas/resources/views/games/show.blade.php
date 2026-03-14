@@ -59,7 +59,7 @@
                     
                     <h3 class="text-2xl font-bold mb-4 text-zas-gray">👥 <span class="text-zas-gray">{{ $game->players->count() }}/{{ $game->max_players }} </span> -
                         @foreach ($game->players as $player)
-                            {{ $player->nickname }}
+                            {{ $player->nickname }}@if(!$loop->last), @endif
                         @endforeach
                     </h3>
                     <h3 class="text-2xl font-bold mb-8 text-zas-gray">
