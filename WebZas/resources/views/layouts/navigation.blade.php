@@ -4,13 +4,16 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('boardgames.index') }}" class="text-zas-light font-bold text-xl">
+                    <span class="text-zas-light font-bold text-xl">
                         ZAS! Juegos de mesa y rol
-                    </a>
+                    </span>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" class="text-zas-dark hover:text-zas-light">
+                        {{ __('Inicio') }}
+                    </x-nav-link>
                     <!-- Todos: Juegos -->
                     <x-nav-link :href="route('boardgames.index')" :active="request()->routeIs('boardgames.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('Juegos') }}

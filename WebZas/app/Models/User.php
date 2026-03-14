@@ -19,9 +19,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'num_partner',    
+        'nickname',
         'name',
-        'email',
         'password',
+        'type',
+        'registration_date',
+        'withdrawal_date',
+        'email',
+        'telephone',
+        'age'
+
     ];
 
     /**
@@ -57,5 +65,26 @@ class User extends Authenticatable
             'zassession_id'
         );
     }
-    
+
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+
+            if (!$user->num_partner) {
+                $user->num_partner = (User::max('num_partner') ?? 0) + 1;
+            }
+            if (!$user->nickname) {
+                $user->nickname = $user->name;
+            }
+            if (!$user->registration_date) {
+                $user->registration_date = now();
+            }
+            if (!$user->age) {
+                $user->age = 18; //the age of the guest is not important. I will change it to the real age, if they became partners
+            }
+            if (!$user->type) {
+                $user->type = 'guest';
+            }
+        });
+    }    
 }
