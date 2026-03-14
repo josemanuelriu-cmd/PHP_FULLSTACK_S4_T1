@@ -60,9 +60,18 @@ class GamesController extends Controller
     public function show(zassessions $zassession, Games $game)
     {
         $game->load(['boardgame','players','host']);
+        $user = Auth::user();
+
+        $isUserJoined = false;
+
+        if ($user) {
+            $isUserJoined = $zassession->users()->where('users.id', $user->id)->exists();
+            }
+
         return view('games.show', [
             'zassession' => $zassession,
-            'game' => $game
+            'game' => $game,
+            'isUserJoined' => $isUserJoined
             ]);
     }
 

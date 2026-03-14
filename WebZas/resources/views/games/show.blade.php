@@ -15,6 +15,8 @@
     $isLimited = $game->status === 'limited';
     $isHost = $game->host_user_id === $user->id;
     $isAdmin = $user->type === 'admin';
+    $isGuest = $user->type === 'guest';
+    //$isUserJoined lo creo en el controlador
 
 @endphp
 
@@ -69,7 +71,8 @@
                 <div class="grid md:grid-rows-2 gap-8">
                     
                     <div>
-                        @if(!$isJoined && !$isFull && $isOpen)
+                        <!--  No esta apuntado a la partida, no esta la partida llena, esta apuntado a la session, es una partida abierta o es limitada pero no es un invitado -->
+                        @if(!$isJoined && !$isFull && $isUserJoined && ($isOpen || ($isLimited && !$isGuest)))
                             <form method="POST" action="{{ route('games.join', [$zassession, $game]) }}">
                                 @csrf
                                 <button type="submit"
