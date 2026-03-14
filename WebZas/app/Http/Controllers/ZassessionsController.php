@@ -12,11 +12,21 @@ use Illuminate\Support\Facades\Auth;
 
 class ZassessionsController extends Controller
 {
-    public function index()
-    {            
-        $Zassessions = Zassessions::orderBy('date', 'asc')->paginate(6);
-        $Users = User::orderBy('nickname')->get();
-        return view('Zassessions.index', ['zassessions' => $Zassessions, 'users' => $Users]);
+    public function index(Request $request)
+    {         
+        $query = Zassessions::orderBy('date', 'asc');
+
+        // Si NO se pide mostrar sesiones pasadas
+        if (!$request->has('show_past')) {
+            $query->whereDate('date', '>=', today());
+        }   
+        $zassessions = $query->paginate(6);
+        $users = User::orderBy('nickname')->get();
+        return view('Zassessions.index', [
+            'zassessions' => $zassessions, 
+            'users' => $users,
+            'showPast' => $request->has('show_past')
+        ]);
     }
     public function show(Zassessions $Zassession)
     {
