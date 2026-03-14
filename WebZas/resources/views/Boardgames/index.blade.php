@@ -1,16 +1,20 @@
+@php
+$user = auth()->user();
+$canManageSession = in_array($user->type, ['admin','junta']);
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
                 🎲 {{ __('Ludoteca') }}
             </h2>
-
+            @if ($canManageSession)
             <a href="{{ route('boardgames.create') }}"
                class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
                       hover:bg-zas-primaryHover transition shadow-lg">
                 + Añadir juego
             </a>
-
+            @endif
         </div>
     </x-slot>
     @if(session('success'))

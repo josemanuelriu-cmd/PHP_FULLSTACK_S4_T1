@@ -1,3 +1,7 @@
+@php
+$user = auth()->user();
+$canManageSession = in_array($user->type, ['admin','junta']);
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
@@ -60,24 +64,23 @@
                 </p>
             </div>
 
-            <div class="flex gap-4 mt-10">
-                <a href="{{ route('boardgames.edit', $boardgame) }}"
-                class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
-                    Editar
-                </a>
-
-                <form action="{{ route('boardgames.destroy', $boardgame) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                            onclick="return confirm('¿Seguro que quieres eliminar este juego?')"
-                            class="bg-zas-dark px-4 py-2 rounded-lg text-white hover:bg-zas-darkSoft transition">
-                        Borrar
-                    </button>
-                </form>
-            </div>
-
+            @if ($canManageSession)
+                <div class="flex gap-4 mt-10">
+                    <a href="{{ route('boardgames.edit', $boardgame) }}"
+                    class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
+                        Editar
+                    </a>
+                    <form action="{{ route('boardgames.destroy', $boardgame) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                                onclick="return confirm('¿Seguro que quieres eliminar este juego?')"
+                                class="bg-zas-dark px-4 py-2 rounded-lg text-white hover:bg-zas-darkSoft transition">
+                            Borrar
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
-
     </div>
 </x-app-layout>

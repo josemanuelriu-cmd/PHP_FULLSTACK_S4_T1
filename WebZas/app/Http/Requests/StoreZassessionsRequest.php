@@ -22,7 +22,7 @@ class StoreZassessionsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => 'required|date|after_or_equal:today|unique:sessions_zas,date',
+            'date' => 'required|date|after_or_equal:today|unique:zassessions,date',
             'name' => 'required|string|min:3|max:255',
             'event_name' => 'nullable|string|min:3|max:255',
             'start_time' => 'required|date_format:H:i',

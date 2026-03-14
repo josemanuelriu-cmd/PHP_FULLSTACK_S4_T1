@@ -47,12 +47,12 @@ class ZassessionsController extends Controller
             'longitude' => str_replace(',', '.', $request->longitude),
         ]);
         Zassessions::create($request->all());
-        return redirect()->route('Zassessions.index');
+        return redirect()->route('zassessions.index');
     }
     public function destroy(Zassessions $Zassession)
     {
         $Zassession->delete();
-        return redirect()->route('Zassessions.index');
+        return redirect()->route('zassessions.index');
     }
     public function update(UpdateZassessionsRequest $request, Zassessions $Zassession)
     {
@@ -71,7 +71,7 @@ class ZassessionsController extends Controller
         */
 
         $Zassession->update($request->all());
-        return redirect()->route('Zassessions.show', $Zassession);
+        return redirect()->route('zassessions.show', $Zassession);
     }
     
     public function join(Zassessions $zassession)
