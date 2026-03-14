@@ -50,7 +50,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                     <p><span class="text-gray-700 font-semibold">🧮 Tipos:</span>
                     <span class="text-zas-primary font-semibold">
                         @foreach($boardgame->types as $type)
-                            {{ $type->type }},
+                            {{ $type->type }}@if(!$loop->last), @endif
                         @endforeach
                     </span>
                 </p>

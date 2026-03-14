@@ -47,17 +47,45 @@
             class="w-full mt-1 border-zas-primary border rounded-lg focus:ring-zas-primary focus:border-zas-primary shadow-sm pl-2">
     </div>
 </div>
+<!-- Dual listbox para tipos -->
 <div>
-    <label class="block font-medium text-gray-700">Tipos</label>
-    <ul id="selected_types">
-        @foreach($types as $type)
-            <li data-id="{{ $type->id }}" class="text-zas-primary">
-                {{ $type->type }}
-                <button type="button" onclick="removeType(this)">X</button>
-                <input type="hidden" name="types[]" value="{{ $type->id }}">
-            </li>
-        @endforeach
-    </ul>
+    <label class="block font-medium text-gray-700 mb-2">Tipos</label>
+    <div id="dual-listbox" class="grid grid-cols-2 gap-4">
+        <!-- Tipos disponibles -->
+        <div class="bg-white shadow rounded p-2">
+            <h3 class="font-bold mb-2">Disponibles</h3>
+            <ul id="available_types" class="space-y-1">
+                @foreach($types as $type)
+                    @if(!$boardgame || !$boardgame->types->contains($type->id))
+                        <li class="flex justify-between items-center p-1 border rounded">
+                            <span>{{ $type->type }}</span>
+                            <button type="button" class="text-white px-2 rounded" onclick="moveToSelected({{ $type->id }}, '{{ $type->type }}', this)">
+                                ➡️
+                            </button>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
+
+        <!-- Tipos seleccionados -->
+        <div class="bg-white shadow rounded p-2">
+            <h3 class="font-bold mb-2">Seleccionados</h3>
+            <ul id="selected_types" class="space-y-1">
+                @if($boardgame)
+                    @foreach($boardgame->types as $type)
+                        <li class="flex justify-between items-center p-1 border rounded">
+                            <button type="button" class="text-white px-2 rounded " onclick="moveToAvailable({{ $type->id }}, '{{ $type->type }}', this)">
+                                ⬅️
+                            </button>
+                            <span>{{ $type->type }}</span>
+                            <input type="hidden" name="types[]" value="{{ $type->id }}">
+                        </li>
+                    @endforeach
+                @endif
+            </ul>
+        </div>
+    </div>
 </div>
 <div>
     <label class="block font-medium text-gray-700">Descripción</label>
@@ -67,31 +95,40 @@
 </div>
 
 <script>
+function moveToSelected(id, text, button) {
+    // eliminar del listado disponible
+    const li = button.parentElement;
+    li.remove();
 
-function addType(){
+    // crear nuevo elemento en selected
+    const ul = document.getElementById('selected_types');
+    const newLi = document.createElement('li');
+    newLi.className = 'flex justify-between items-center p-1 border rounded';
 
-    let select = document.getElementById('types_select');
-    let id = select.value;
-    let text = select.options[select.selectedIndex].text;
+    newLi.innerHTML = `
+        <button type="button" class="text-white px-2 rounded " onclick="moveToAvailable(${id}, '${text}', this)">⬅️</button>
+        <span>${text}</span>
+        <input type="hidden" name="types[]" value="${id}">
+    `;
 
-    if(document.querySelector('#selected_types li[data-id="'+id+'"]')){
-        return;
-    }
-
-    let li = document.createElement('li');
-
-    li.setAttribute('data-id',id);
-
-    li.innerHTML =
-        text +
-        ' <button type="button" onclick="removeType(this)">X</button>' +
-        '<input type="hidden" name="types[]" value="'+id+'">';
-
-    document.getElementById('selected_types').appendChild(li);
+    ul.appendChild(newLi);
 }
 
-function removeType(button){
-    button.parentElement.remove();
-}
+function moveToAvailable(id, text, button) {
+    // eliminar del listado seleccionado
+    const li = button.parentElement;
+    li.remove();
 
+    // crear nuevo elemento en available
+    const ul = document.getElementById('available_types');
+    const newLi = document.createElement('li');
+    newLi.className = 'flex justify-between items-center p-1 border rounded';
+
+    newLi.innerHTML = `
+        <span>${text}</span>
+        <button type="button" class="text-white px-2 " onclick="moveToSelected(${id}, '${text}', this)">➡️</button>
+    `;
+
+    ul.appendChild(newLi);
+}
 </script>
