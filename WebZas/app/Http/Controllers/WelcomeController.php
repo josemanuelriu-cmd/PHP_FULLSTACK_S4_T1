@@ -15,8 +15,9 @@ class WelcomeController extends Controller
             'games.players',
             'games.host'
         ])
-        ->where('date','>=',now())
+        ->whereDate('date','>=',today())
         ->orderBy('date')
+        ->orderBy('start_time')
         ->first();
 
         return view('welcome', [

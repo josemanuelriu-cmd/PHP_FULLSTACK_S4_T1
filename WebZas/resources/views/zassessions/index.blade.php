@@ -8,6 +8,18 @@ $canManageSession = in_array($user->type, ['admin','junta']);
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
                 📅 {{ __('Sesiones') }}
             </h2>
+
+            <form method="GET" action="{{ route('zassessions.index') }}" class="mb-4">
+                <label class="flex items-center gap-2">
+                    <input type="checkbox"
+                        name="show_past"
+                        value="1"
+                        onchange="this.form.submit()"
+                        {{ $showPast ? 'checked' : '' }}>
+                    Mostrar sesiones pasadas
+                </label>
+            </form>
+            
             @if ($canManageSession)
                 <a href="{{ route('zassessions.create') }}"
                 class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
@@ -54,7 +66,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
             </div>
 
             <div class="mt-10">
-                {{ $zassessions->links() }}
+                {{ $zassessions->withQueryString()->links() }}
             </div>
         @else
             <p class="text-zas-gray">Aún no hay sesiones registradas.</p>
