@@ -16,7 +16,7 @@
     </head>
     <body class="font-sans antialiased bg-[#F3F4F6]" relative min-h-screen">
 
-
+        @include('layouts.guestNavigation')
         <!-- Marca de agua -->
         <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-10">
             <img src="{{ asset('images/logo.png') }}" alt="ZAS Club Logo" class="w-1/2 h-auto object-contain">
