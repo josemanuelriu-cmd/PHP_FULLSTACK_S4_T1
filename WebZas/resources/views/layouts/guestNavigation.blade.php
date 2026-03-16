@@ -27,8 +27,14 @@ $logeado = auth()->check() ? true : false;
                         <!-- Admin: Perfil -->
                         @if(Auth::user()->type === 'admin')
                         <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')" class="text-zas-dark hover:text-zas-light">
-                            {{ __('Perfil') }}
+                            {{ __('Password') }}
                         </x-nav-link>
+                        @endif
+                        <!-- Todos logueados: PerfilZas -->
+                         @if(Auth::user())
+                            <x-nav-link :href="route('profile.zas.edit')" :active="request()->routeIs('profile.zas.*')" class="text-zas-dark hover:text-zas-light">
+                                {{ __('Perfil') }}
+                            </x-nav-link>
                         @endif
                         <!-- Admin y junta: Tipos -->
                         @if(in_array(Auth::user()->type, ['admin', 'junta']))
