@@ -2,18 +2,18 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🧮 {{ __('Tipos de juego') }}
+                🧮 {{ __('messages.Game types') }}
             </h2>
         </div>
     </x-slot>
 
     <div class="max-w-3xl mx-auto px-4 py-8">
 
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">➕ Añadir nuevo tipo</h2>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">➕ {{ __('messages.Add new type') }}</h2>
 
         <a href="{{ route('types.index') }}"
         class="text-zas-primary hover:underline mb-6 inline-block">
-            ← Volver al listado
+            ← {{ __('messages.Return to list') }}
         </a>
 
         @if ($errors->any())
@@ -31,19 +31,20 @@
             @csrf
 
             @include('types.Form')
-
             
             <div  class="grid md:grid-cols-3 gap-4">
                 <button type="submit"
                     class="bg-zas-primary text-white px-6 py-2 rounded-lg hover:bg-zas-primaryHover transition">
-                    Guardar tipo
+                    {{ __('messages.Save type') }}
                 </button>
                 <button type="reset"
                     class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition">
-                    Limpiar formulario
+                    {{ __('messages.Clean form') }}
                 </button>
                 <a href="{{ route('types.index') }}"
-                class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft transition text-center">Cancelar</a>
+                    class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft transition text-center">
+                    {{ __('messages.Cancel') }}
+            </a>
             </div>
         </form>
 

@@ -28,7 +28,8 @@ class User extends Authenticatable
         'withdrawal_date',
         'email',
         'telephone',
-        'age'
+        'age',
+        'language'
     ];
 
     /**

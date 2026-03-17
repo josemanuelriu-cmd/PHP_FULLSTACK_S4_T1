@@ -75,6 +75,7 @@ class ProfileController extends Controller
                 Rule::unique(User::class)->ignore($user->id)],
             'telephone' => ['nullable','string','max:20'],
             'age' => ['nullable','integer','min:6'],
+            'language' => ['required','in:es,en,ca'],
         ]);
 
         $user->update([
@@ -85,6 +86,7 @@ class ProfileController extends Controller
             'num_partner' => $request->num_partner,
             'telephone' => $request->telephone,
             'age' => $request->age,
+            'language' => $request->language,
         ]);
 
         return Redirect::route('profile.zas.edit', $user->id)->with('status', 'Perfil actualizado');

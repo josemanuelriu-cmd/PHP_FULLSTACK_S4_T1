@@ -6,13 +6,13 @@ $canManageSession = in_array($user->type, ['admin','junta']);
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🎲 {{ __('Ludoteca') }}
+                🎲 {{ __('messages.Playroom') }}
             </h2>
             @if ($canManageSession)
             <a href="{{ route('boardgames.create') }}"
                class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
                       hover:bg-zas-primaryHover transition shadow-lg">
-                + Añadir juego
+                + {{ __('messages.Add game') }}
             </a>
             @endif
         </div>
@@ -30,16 +30,22 @@ $canManageSession = in_array($user->type, ['admin','junta']);
 
                 <!-- Filtrar por nombre -->
                 <div class="flex flex-col">
-                    <label for="name" class="text-zas-primary font-semibold">Nombre</label>
+                    <label for="name" class="text-zas-primary font-semibold">
+                        {{ __('messages.Name') }}
+                    </label>
                     <input type="text" name="name" id="name" value="{{ request('name') }}"
                         class="text-zas-gray border rounded-lg px-3 py-2 w-48 border-zas-primary focus:border-zas-primary focus:ring-zas-primary">
                 </div>
 
                 <!-- Filtrar por tipo -->
                 <div class="flex flex-col">
-                    <label for="type" class="text-zas-primary font-semibold">Tipo</label>
+                    <label for="type" class="text-zas-primary font-semibold">
+                        {{ __('messages.Type') }}
+                    </label>
                     <select name="type" id="type" class="text-zas-gray border rounded-lg px-3 py-2 w-48 border-zas-primary focus:border-zas-primary focus:ring-zas-primary">
-                        <option value="">Todos los tipos</option>
+                        <option value="">
+                            {{ __('messages.All types') }}
+                        </option>
                         @foreach($types as $type)
                             <option value="{{ $type->id }}" @selected(request('type') == $type->id)>
                                 {{ $type->type }}
@@ -50,21 +56,27 @@ $canManageSession = in_array($user->type, ['admin','junta']);
 
                 <!-- Filtrar por jugadores -->
                 <div class="flex flex-col">
-                    <label for="players" class="text-zas-primary font-semibold">Jugadores</label>
+                    <label for="players" class="text-zas-primary font-semibold">
+                        {{ __('messages.Players') }}
+                    </label>
                     <input type="number" name="players" id="players" value="{{ request('players') }}"
                         class="text-zas-gray border rounded-lg px-3 py-2 w-32 border-zas-primary focus:border-zas-primary focus:ring-zas-primary">
                 </div>
 
                 <!-- Filtrar por edad -->
                 <div class="flex flex-col">
-                    <label for="age" class="text-zas-primary font-semibold">Edad mín.</label>
+                    <label for="age" class="text-zas-primary font-semibold">
+                        {{ __('messages.Min age') }}
+                    </label>
                     <input type="number" name="age" id="age" value="{{ request('age') }}"
                         class="text-zas-gray border rounded-lg px-3 py-2 w-32 border-zas-primary focus:border-zas-primary focus:ring-zas-primary">
                 </div>
 
                 <!-- Filtrar por duracion -->
                 <div class="flex flex-col">
-                    <label for="duration" class="text-zas-primary font-semibold">Duración máx.</label>
+                    <label for="duration" class="text-zas-primary font-semibold">
+                        {{ __('messages.Max duration') }}
+                    </label>
                     <input type="number" name="duration" id="duration" value="{{ request('duration') }}"
                         class="text-zas-gray border rounded-lg px-3 py-2 w-32 border-zas-primary focus:border-zas-primary focus:ring-zas-primary">
                 </div>
@@ -74,7 +86,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                     <button type="submit"
                             class="bg-zas-primary px-5 py-2 rounded-lg text-white font-semibold
                                 hover:bg-zas-primaryHover transition shadow-lg">
-                        Filtrar
+                        {{ __('messages.Filter') }}
                     </button>
                 </div>
 
@@ -84,7 +96,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                     <a href="{{ route('boardgames.index') }}"
                     class="bg-zas-gray px-5 py-2 rounded-xl text-white font-semibold
                             hover:bg-zas-grayHover transition shadow-lg">
-                        Limpiar
+                        {{ __('messages.Clean') }}
                     </a>
                 </div>
                 @endif
@@ -103,9 +115,9 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                             {{ $boardgame->name }}
                         </h3>
 
-                        <p class="text-zas-gray mb-2">👥 {{ $boardgame->min_players }} - {{ $boardgame->max_players }} jugadores</p>
-                        <p class="text-zas-gray mb-2">🎂 {{ $boardgame->min_age }}+ años</p>
-                        <p class="text-zas-gray mb-2">⏳ {{ $boardgame->duration }} minutos</p>
+                        <p class="text-zas-gray mb-2">👥 {{ $boardgame->min_players }} - {{ $boardgame->max_players }} {{ __('messages.players') }}</p>
+                        <p class="text-zas-gray mb-2">🎂 {{ $boardgame->min_age }}+ {{ __('messages.years') }}</p>
+                        <p class="text-zas-gray mb-2">⏳ {{ $boardgame->duration }} {{ __('messages.minutes') }}</p>
 
                         <p class="text-zas-gray mb-4">👑
                             @if($boardgame->owner)
@@ -117,7 +129,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
 
                         <a href="{{ route('boardgames.show', $boardgame) }}"
                            class="text-zas-primary font-semibold hover:underline">
-                            Ver ficha →
+                            {{ __('messages.See file') }} →
                         </a>
                     </div>
                 @endforeach
@@ -127,7 +139,9 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                 {{ $boardgames->withQueryString()->links() }}
             </div>
         @else
-            <p class="text-zas-primary">No hay juegos que cumplan los filtros.</p>
+            <p class="text-zas-primary">
+                {{ __('messages.There are no games that meet the filters') }}.
+            </p>
         @endif
     </div>
 </x-app-layout>

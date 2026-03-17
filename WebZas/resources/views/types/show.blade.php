@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🧮 {{ __('Tipos de juego') }}
+                🧮 {{ __('messages.Game types') }}
             </h2>
 
         </div>
@@ -12,7 +12,7 @@
 
         <a href="{{ route('types.index') }}"
         class="text-zas-primary hover:underline">
-            ← Volver al listado
+            ← {{ __('messages.Return to list') }}
         </a>
 
         <div class="bg-white border border-zas-primary
@@ -28,7 +28,7 @@
             <div class="flex gap-4 mt-10">
                 <a href="{{ route('types.edit', $type) }}"
                 class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
-                    Editar
+                    {{ __('messages.Edit') }}
                 </a>
 
                 <form action="{{ route('types.destroy', $type) }}" method="post">
@@ -37,7 +37,7 @@
                     <button type="submit"
                             onclick="return confirm('¿Seguro que quieres eliminar este tipo?')"
                             class="bg-zas-dark px-4 py-2 rounded-lg text-white hover:bg-zas-darkSoft transition">
-                        Borrar
+                        {{ __('messages.Delete') }}
                     </button>
                 </form>
             </div>
