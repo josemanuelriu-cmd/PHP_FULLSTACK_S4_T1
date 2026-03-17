@@ -161,7 +161,7 @@ class UserSeeder extends Seeder
                 'num_partner' => 14,
                 'nickname' => 'Clara',
                 'name' => 'Clara',
-                'password' => bcrypt('Clara69'),
+                'password' => bcrypt('Clara123'),
                 'type' => 'guest',
                 'registration_date' => now(),
                 'email' => 'clara@nozas.es',
