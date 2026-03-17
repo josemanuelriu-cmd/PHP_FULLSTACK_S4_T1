@@ -9,7 +9,7 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                📅 {{ __('Sesiones') }}
+                📅 {{ __('messages.Sessions') }}
             </h2>
 
         </div>
@@ -20,7 +20,7 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
 
         <a href="{{ route('zassessions.index') }}"
         class="text-zas-primary hover:underline">
-            ← Volver al listado
+            ← {{ __('messages.Return to list') }}
         </a>
 
         <div class="bg-white border border-zas-primary
@@ -36,7 +36,7 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
                 @if($canManageSession)
                     <a href="{{ route('zassessions.edit', ['zassessions' => $zassession]) }}"
                     class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
-                        Editar
+                        {{ __('messages.Edit') }}
                     </a>                
 
                     <form action="{{ route('zassessions.destroy', ['zassessions' => $zassession->id]) }}" method="post">
@@ -45,7 +45,7 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
                         <button type="submit"
                                 onclick="return confirm('¿Seguro que quieres eliminar esta sesión?')"
                                 class="bg-zas-dark px-4 py-2 rounded-lg text-white hover:bg-zas-darkSoft transition">
-                            Borrar
+                            {{ __('messages.Delete') }}
                         </button>
                     </form>
                 @endif
@@ -54,7 +54,7 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
                         @csrf
                         <button type="submit"
                             class="bg-zas-gray px-4 py-2 rounded-lg text-zas-primary hover:bg-zas-primaryhover transition">
-                            Apuntarse a la sesión
+                            {{ __('messages.Join to the session') }}
                         </button>
                     </form>
                 @endif
@@ -63,14 +63,14 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
                         @csrf
                         @method('DELETE')
                         <button class="bg-zas-gray px-4 py-2 rounded-lg text-zas-primary hover:bg-zas-primaryhover transition">
-                            Borrarse de la sessión
+                            {{ __('messages.Delete from the session') }}
                         </button>
                     </form>
                 @endif
                 @if($canCreateGame)
                     <a href="{{ route('games.create', $zassession) }}"
                         class="bg-zas-gray px-4 py-2 rounded-lg text-zas-primary hover:bg-zas-primaryhover transition">
-                        Crear partida
+                        {{ __('messages.Create game') }}
                     </a>
                 @endif
 

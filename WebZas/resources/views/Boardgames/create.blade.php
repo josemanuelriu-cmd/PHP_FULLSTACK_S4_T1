@@ -2,18 +2,18 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🎲 {{ __('Ludoteca') }}
+                🎲 {{ __('messages.Playroom') }}
             </h2>
         </div>
     </x-slot>
 
     <div class="max-w-3xl mx-auto px-4 py-8">
 
-        <h2 class="text-3xl font-bold text-zas-primary mb-6">➕ Añadir juego</h2>
+        <h2 class="text-3xl font-bold text-zas-primary mb-6">➕ {{ __('messages.Add game') }}</h2>
 
         <a href="{{ route('boardgames.index') }}"
         class="text-zas-primary hover:underline mb-6 inline-block">
-            ← Volver al listado
+            ← {{ __('messages.Return to list') }}
         </a>
 
         @if ($errors->any())
@@ -35,14 +35,16 @@
             <div  class="grid md:grid-cols-3 gap-4">
                 <button type="submit"
                     class="bg-zas-primary text-white px-6 py-2 rounded-lg hover:bg-zas-primaryHover transition">
-                    Guardar juego
+                    {{ __('messages.Save game') }}
                 </button>
                 <button type="reset"
                     class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition">
-                    Limpiar formulario
+                    {{ __('messages.Clear form') }}
                 </button>
                 <a href="{{ route('boardgames.index') }}"
-                class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft hover:text-zas-light transition text-center">Cancelar</a>
+                class="bg-zas-dark text-white px-6 py-2 rounded-lg hover:bg-zas-darkSoft hover:text-zas-light transition text-center">
+                    {{ __('messages.Cancel') }}
+                    </a>
             </div>
         </form>
 

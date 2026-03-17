@@ -9,9 +9,28 @@ use App\Http\Controllers\GamesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+//para multilenguaje
+Route::get('/lang/{locale}', function ($locale) {
+    
+if (!in_array($locale, ['es','en','ca'])) {
+        abort(400);
+    }
+
+    session(['locale' => $locale]);
+
+    $user = Auth::user();
+    if ($user) {
+        $user->update([
+           'language' => $locale
+        ]);
+    }
+    return back();
+})->name('lang.switch');
+
 
 // Binding manual para Zassessions
 Route::bind('zassessions', function ($value) {

@@ -3,14 +3,18 @@
 @endphp
 
 <div>
-    <label class="block font-medium text-gray-700">Nombre</label>
+    <label class="block font-medium text-gray-700">
+        {{ __('messages.Name') }}
+    </label>
     <input type="text" name="name"
         value="{{ old('name', $boardgame->name ?? '') }}"
         class="w-full mt-1 border-zas-primary border rounded-lg shadow-sm focus:ring-zas-primary focus:border-zas-primary pl-2">
     @error('name') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
 </div>
 <div>
-    <label class="block font-medium text-gray-700">Slug</label>
+    <label class="block font-medium text-gray-700">
+        {{ __('messages.Slug') }}
+    </label>
     <input type="text" name="slug"
         value="{{ old('slug', $boardgame->slug ?? '') }}"
         class="w-full mt-1 border-zas-primary border rounded-lg shadow-sm focus:ring-zas-primary focus:border-zas-primary pl-2">
@@ -19,29 +23,37 @@
 
 <div class="grid md:grid-cols-2 gap-4">
     <div>
-        <label class="block font-medium text-gray-700">Mín jugadores</label>
+        <label class="block font-medium text-gray-700">
+            {{ __('messages.Min players') }}
+        </label>
         <input type="number" name="min_players"
             value="{{ old('min_players', $boardgame->min_players ?? '') }}"
             class="w-full mt-1 border-zas-primary border rounded-lg focus:ring-zas-primary focus:border-zas-primary shadow-sm pl-2">
     </div>
 
     <div>
-        <label class="block font-medium text-gray-700">Máx jugadores</label>
+        <label class="block font-medium text-gray-700">
+            {{ __('messages.Max players') }}
+        </label>
         <input type="number" name="max_players"
             value="{{ old('max_players', $boardgame->max_players ?? '') }}"
             class="w-full mt-1 border-zas-primary border rounded-lg focus:ring-zas-primary focus:border-zas-primary shadow-sm pl-2">
     </div>
 </div>
-<div class="grid md:grid-cols-3 gap-4">
+<div class="grid md:grid-cols-2 gap-4">
     <div>
-        <label class="block font-medium text-gray-700">Edad mínima</label>
+        <label class="block font-medium text-gray-700">
+            {{ __('messages.Min age') }}
+        </label>
         <input type="number" name="min_age"
             value="{{ old('min_age', $boardgame->min_age ?? '') }}"
             class="w-full mt-1 border-zas-primary border rounded-lg focus:ring-zas-primary focus:border-zas-primary shadow-sm pl-2">
     </div>
 
     <div>
-        <label class="block font-medium text-gray-700">Duración (minutos)</label>
+        <label class="block font-medium text-gray-700">
+            {{ __('messages.Duration (minutes)') }}
+        </label>
         <input type="number" name="duration"
             value="{{ old('duration', $boardgame->duration ?? '') }}"
             class="w-full mt-1 border-zas-primary border rounded-lg focus:ring-zas-primary focus:border-zas-primary shadow-sm pl-2">
@@ -49,11 +61,15 @@
 </div>
 <!-- Dual listbox para tipos -->
 <div>
-    <label class="block font-medium text-gray-700 mb-2">Tipos</label>
+    <label class="block font-medium text-gray-700 mb-2">
+        {{ __('messages.Types') }}
+    </label>
     <div id="dual-listbox" class="grid grid-cols-2 gap-4">
         <!-- Tipos disponibles -->
         <div class="bg-white shadow rounded p-2">
-            <h3 class="font-bold mb-2">Disponibles</h3>
+            <h3 class="font-bold mb-2">
+                {{ __('messages.Available') }}
+            </h3>
             <ul id="available_types" class="space-y-1">
                 @foreach($types as $type)
                     @if(!$boardgame || !$boardgame->types->contains($type->id))
@@ -70,7 +86,9 @@
 
         <!-- Tipos seleccionados -->
         <div class="bg-white shadow rounded p-2">
-            <h3 class="font-bold mb-2">Seleccionados</h3>
+            <h3 class="font-bold mb-2">
+                {{ __('messages.Selected') }}
+            </h3>
             <ul id="selected_types" class="space-y-1">
                 @if($boardgame)
                     @foreach($boardgame->types as $type)
@@ -88,7 +106,9 @@
     </div>
 </div>
 <div>
-    <label class="block font-medium text-gray-700">Descripción</label>
+    <label class="block font-medium text-gray-700">
+        {{ __('messages.Description') }}
+    </label>
     <textarea name="description"
         class="w-full mt-1 border-zas-primary border rounded-lg focus:ring-zas-primary focus:border-zas-primary shadow-sm resize-none pl-2"
         rows="4">{{ old('description', $boardgame->description ?? '') }}</textarea>

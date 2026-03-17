@@ -6,7 +6,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                📅 {{ __('Sesiones') }}
+                📅 {{ __('messages.Sessions') }}
             </h2>
 
             <form method="GET" action="{{ route('zassessions.index') }}" class="mb-4">
@@ -16,7 +16,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                         value="1"
                         onchange="this.form.submit()"
                         {{ $showPast ? 'checked' : '' }}>
-                    Mostrar sesiones pasadas
+                    {{ __('messages.Show past sessions') }}
                 </label>
             </form>
             
@@ -24,7 +24,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                 <a href="{{ route('zassessions.create') }}"
                 class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
                         hover:bg-zas-primaryHover transition shadow-lg">
-                    + Añadir sesión
+                    + {{ __('messages.Add session') }}
                 </a>
             @endif
         </div>
@@ -59,7 +59,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
 
                         <a href="{{ route('zassessions.show', $session) }}"
                            class="text-zas-primary font-semibold hover:underline">
-                            Ver ficha →
+                            {{ __('messages.See file') }} →
                         </a>
                     </div>
                 @endforeach
@@ -69,7 +69,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                 {{ $zassessions->withQueryString()->links() }}
             </div>
         @else
-            <p class="text-zas-gray">Aún no hay sesiones registradas.</p>
+            <p class="text-zas-gray">{{ __('messages.There are no sessions registered yet') }}.</p>
         @endif
     </div>
 </x-app-layout>

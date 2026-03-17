@@ -2,13 +2,13 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
-                🧮 {{ __('Tipos de juego') }}
+                🧮 {{ __('messages.Game types') }}
             </h2>
 
             <a href="{{ route('types.create') }}"
                class="bg-zas-primary px-5 py-2 rounded-xl text-white font-semibold
                       hover:bg-zas-primaryHover transition shadow-lg">
-                + Añadir tipo
+                + {{ __('messages.Add type') }}
             </a>
         </div>
     </x-slot>
@@ -27,7 +27,7 @@
 
                         <a href="{{ route('types.show', $type) }}"
                            class="text-zas-primary font-semibold hover:underline">
-                            Ver ficha →
+                            {{ __('messages.see file') }} →
                         </a>
                     </div>
                 @endforeach
@@ -37,7 +37,7 @@
                 {{ $types->links() }}
             </div>
         @else
-            <p class="text-zas-gray">Aún no hay tipos registrados.</p>
+            <p class="text-zas-gray">{{ __('messages.There are no registered types yet') }}</p>
         @endif
     </div>
 </x-app-layout>

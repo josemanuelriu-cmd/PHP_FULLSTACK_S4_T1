@@ -47,7 +47,7 @@
 
 <div class="grid md:grid-cols-2 gap-8 mt-4 border-t border-zas-primary/30 pt-4"> 
     <div>               
-        <h3 class="text-zas-primary font-semibold mb-2">Usuarios apuntados</h3>
+        <h3 class="text-zas-primary font-semibold mb-2">{{ __('messages.Users signed up') }}</h3>
         <div class="grid grid-cols-2 gap-6 text-zas-gray">
             <ul class="list-inside">
                 @foreach($column1 as $index => $user)
@@ -90,7 +90,7 @@
     </div>
 
     <div> 
-        <h3 class="text-zas-primary font-semibold">Partidas creadas</h3>
+        <h3 class="text-zas-primary font-semibold">{{ __('messages.Created games') }}</h3>
         @if($zassession->games->count() > 0)
             <ul class="text-zas-gray space-y-3">
                 @foreach($zassession->games as $game)
@@ -112,10 +112,10 @@
                                 @elseif ($isGameFull) 🟠
                                 @else 🟢                                                
                                 @endif
-                                👑 Organiza: {{ $game->host->nickname }}
+                                👑 {{ __('messages.Organize') }}: {{ $game->host->nickname }}
                             </div>
                             <div class="text-sm mt-1">
-                                Jugadores:
+                                {{ __('messages.Players') }}:
                                 @foreach($game->players as $player)
                                     <span class="inline-block mr-1">{{ $player->nickname }}@if(!$loop->last),@endif</span>
                                 @endforeach
@@ -126,7 +126,7 @@
             </ul>
         @else
             <p class="text-gray-400">
-                No hay partidas creadas todavía.
+                {{ __('messages.No games have been created yet') }}
             </p>
         @endif
     </div>
