@@ -23,6 +23,10 @@ class user_zassessionSeeder extends Seeder
                 'zassession_id' => 2, // segunda session
             ],
             [
+                'user_id' => 1, // Ryu
+                'zassession_id' => 3, // tercera session
+            ],
+            [
                 'user_id' => 6, // Ruben
                 'zassession_id' => 1, // segunda session
             ],
@@ -50,6 +54,14 @@ class user_zassessionSeeder extends Seeder
                 'user_id' => 14, // Clara
                 'zassession_id' => 1, // primera session
             ],
+            [
+                'user_id' => 9, // Edu
+                'zassession_id' => 2, // segunda session
+            ],
+            [
+                'user_id' => 10, // Dama
+                'zassession_id' => 2, // segunda session
+            ]
         ]);
     }
 }
