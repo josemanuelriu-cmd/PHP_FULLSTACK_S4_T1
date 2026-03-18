@@ -45,6 +45,6 @@ class TypesController extends Controller
 
         $type->update($request->all());
         $type->boardgames()->sync($request->boardgames ?? []);
-        return redirect()->route('types.show', $type)->with('success','Tipo actualizado');
+        return redirect()->route('types.show', $type)->with('success', __('messages.Updated type'));
     }
 }

@@ -86,7 +86,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                         @csrf
                         @method('DELETE')
                         <button type="submit"
-                                onclick="return confirm('{{ __('Are you sure you want to delete this game?') }}')"
+                                onclick="return confirm('{{ __('messages.Are you sure you want to delete this boardgame?') }}')"
                                 class="bg-zas-dark px-4 py-2 rounded-lg text-white hover:bg-zas-darkSoft transition">
                             {{ __('messages.Delete') }}
                         </button>

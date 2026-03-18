@@ -36,7 +36,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'Perfil actualizado');
+        return Redirect::route('profile.edit')->with('status', __('messages.Updated profile'));
     }
     public function editZas(Request $request, User $user = null): View
     {
@@ -89,7 +89,7 @@ class ProfileController extends Controller
             'language' => $request->language,
         ]);
 
-        return Redirect::route('profile.zas.edit', $user->id)->with('status', 'Perfil actualizado');
+        return Redirect::route('profile.zas.edit', $user->id)->with('status', __('messages.Updated profile'));
     }
 
     /**

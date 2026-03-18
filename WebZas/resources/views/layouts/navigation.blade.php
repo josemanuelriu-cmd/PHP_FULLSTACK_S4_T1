@@ -21,7 +21,7 @@
                      <!-- Admin: Perfil -->
                     @if(Auth::user()->type === 'admin')
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')" class="text-zas-dark hover:text-zas-light">
-                        {{ __('messages.Password') }}
+                        {{ __('messages.Change password') }}
                     </x-nav-link>
                     @endif
                     <!-- Todos: PerfilZas -->

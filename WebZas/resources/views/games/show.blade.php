@@ -83,7 +83,7 @@
                         @endif
                     </div>
                     <div>
-                        @if($isJoined && $isOpen)
+                        @if($isJoined && ($isOpen || $isLimited))
                             <form method="POST" action="{{ route('games.leave', [$zassession, $game]) }}">
                                 @csrf
                                 @method('DELETE')
@@ -114,7 +114,7 @@
                         @method('DELETE')
 
                         <button type="submit"
-                            onclick="return confirm('¿Seguro que quieres borrar esta partida?')"
+                            onclick="return confirm('{{ __('messages.Are you sure you want to delete this game?') }}'')"
                             class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
                             {{ __('messages.Delete game') }}
                         </button>
@@ -132,7 +132,7 @@
                 </div>
                 <div>
                     <!-- solo el host y el admin pueden reabrir una partida -->
-                    @if (($isHost || $isAdmin) && !$isOpen)
+                    @if (($isHost || $isAdmin) && (!$isOpen && !$isLimited))
                         <a href="{{ route('games.reopen', [$zassession,$game]) }}"
                         class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
                             {{ __('messages.Reopen game') }}

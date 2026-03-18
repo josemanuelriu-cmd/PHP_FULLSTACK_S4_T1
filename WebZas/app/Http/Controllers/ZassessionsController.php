@@ -93,7 +93,7 @@ class ZassessionsController extends Controller
         }
 
         return redirect()->route('zassessions.show', $zassession)
-            ->with('success', 'Te has apuntado a la sesión');
+            ->with('success', __('messages.You have signed up for the session'));
     }
     public function leave(Zassessions $zassession)
     {
@@ -101,7 +101,7 @@ class ZassessionsController extends Controller
 
         return redirect()
             ->route('zassessions.show', $zassession)
-            ->with('success', 'Te has borrado de la sesión');
+            ->with('success', __('messages.You have deleted yourself from the session'));
     }
 
     public function createGame(Zassessions $zassession)
@@ -137,6 +137,6 @@ class ZassessionsController extends Controller
 
         return redirect()
             ->route('zassessions.show', $zassession)
-            ->with('success', 'Partida creada');
+            ->with('success', __('messages.Created game'));
     }
 }
