@@ -55,7 +55,7 @@ class GamesController extends Controller
 
         return redirect()
             ->route('zassessions.show',$zassession)
-            ->with('success','Partida creada correctamente');
+            ->with('success',__('messages.game created successfully'));
     }
     public function show(zassessions $zassession, Games $game)
     {
@@ -85,7 +85,7 @@ class GamesController extends Controller
         }
 
         return redirect()->route('games.show', [$zassession, $game])
-            ->with('success', 'Te has apuntado a la partida');
+            ->with('success', __('messages.You have signed up for the game'));
     }
     public function leave(Zassessions $zassession, Games $game)
     {
@@ -93,7 +93,7 @@ class GamesController extends Controller
 
         return redirect()
             ->route('games.show', [$zassession, $game])
-            ->with('success', 'Te has borrado de la partida');
+            ->with('success', __('messages.You have deleted yourself from the game'));
     }
 
     public function destroy(Zassessions $zassession, Games $game)
@@ -102,7 +102,7 @@ class GamesController extends Controller
 
         return redirect()
             ->route('zassessions.show', ['zassessions' => $zassession])
-            ->with('success','Partida eliminada');
+            ->with('success',__('messages.Game deleted'));
     }
     public function close(Zassessions $zassession, Games $game)
     {
@@ -112,7 +112,7 @@ class GamesController extends Controller
 
         return redirect()
             ->route('games.show', [$zassession, $game])
-            ->with('success', 'Partida cerrada');
+            ->with('success', __('messages.game closed'));
     }
     public function reopen(Zassessions $zassession, Games $game)
     {
@@ -122,7 +122,7 @@ class GamesController extends Controller
 
         return redirect()
             ->route('games.show', [$zassession, $game])
-            ->with('success', 'Partida reabierta');
+            ->with('success', __('messages.Game reopened'));
     }
 
     public function update(Request $request, Zassessions $zassession, Games $game)
@@ -138,7 +138,7 @@ class GamesController extends Controller
 
         return redirect()
             ->route('games.show', [$zassession, $game])
-            ->with('success','Partida actualizada');
+            ->with('success', __('messages.Updated game'));
     }
     public function edit(Zassessions $zassession, Games $game)
     {        

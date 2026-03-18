@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-zas-primary leading-tight">
-                🧑🏻‍🦱 {{ __('messages.Password') }}
+                🧑🏻‍🦱 {{ __('messages.Change password') }}
             </h2>
         </div>
     </x-slot>

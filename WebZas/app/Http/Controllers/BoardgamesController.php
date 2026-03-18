@@ -58,12 +58,12 @@ class BoardgamesController extends Controller
         $boardgame=Boardgames::create($request->validated());
         $boardgame->types()->sync($request->types ?? []);
         
-        return redirect()->route('boardgames.show', $boardgame)->with('success','Juego creado');
+        return redirect()->route('boardgames.show', $boardgame)->with('success', __('messages.Boardgame created'));
     }
     public function destroy(Boardgames $boardgame)
     {
         $boardgame->delete();
-        return redirect()->route('boardgames.index')->with('success', 'Juego eliminado');
+        return redirect()->route('boardgames.index')->with('success',  __('messages.Boardgame eliminated'));
     }
     public function update(Request $request, Boardgames $boardgame)
     {
@@ -80,6 +80,6 @@ class BoardgamesController extends Controller
         $boardgame->update($request->all());
         $boardgame->types()->sync($request->types ?? []);
         //return redirect()->route('boardgames.show', $boardgame);
-        return redirect()->route('boardgames.show', $boardgame)->with('success','Juego actualizado');
+        return redirect()->route('boardgames.show', $boardgame)->with('success', __('messages.Boardgame updated'));
     }
 }

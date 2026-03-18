@@ -35,7 +35,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit"
-                            onclick="return confirm('¿Seguro que quieres eliminar este tipo?')"
+                            onclick="return confirm('{{ __('messages.Are you sure you want to delete this type?') }}')"
                             class="bg-zas-dark px-4 py-2 rounded-lg text-white hover:bg-zas-darkSoft transition">
                         {{ __('messages.Delete') }}
                     </button>
