@@ -116,25 +116,52 @@
                 </option>
             </select>
         </div>
+        @if($authUser->type === 'admin')
+            <div class="mt-4">
+                <x-input-label :value="__('messages.Status')" />
+
+                @if($user->withdrawal_date)
+                    <p class="text-red-600 font-semibold">
+                        {{ __('messages.User deactivated') }}
+                        ({{ $user->withdrawal_date }})
+                    </p>
+                @else
+                    <p class="text-green-600 font-semibold">
+                        {{ __('messages.Active user') }}
+                    </p>
+                @endif
+            </div>
+        @endif
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('messages.Save') }}</x-primary-button>
-
-            @if (session('status') === 'profilezas-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-zas-primary"
-                >{{ __('messages.Saved') }}</p>
-            @endif
-
-            @if(session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
         </div>
     </form>
+    @if($authUser->type === 'admin' && $authUser->id !== $user->id)
+        <div class="mt-4">
+
+            @if($user->withdrawal_date)
+                <!-- REACTIVAR -->
+                <form method="POST" action="{{ route('profile.zas.reactivate', $user->id) }}">
+                    @csrf
+                    @method('PATCH')
+
+                    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                        {{ __('messages.Reactivate user') }}
+                    </button>
+                </form>
+            @else
+                <!-- DAR DE BAJA -->
+                <form method="POST" action="{{ route('profile.zas.deactivate', $user->id) }}">
+                    @csrf
+                    @method('PATCH')
+
+                    <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                        {{ __('messages.Deactivate user') }}
+                    </button>
+                </form>
+            @endif
+
+        </div>
+    @endif
 </section>

@@ -8,8 +8,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Middleware\CheckUserActive;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -59,9 +61,15 @@ Route::middleware(['auth','check.type:admin,junta,partner'])->group(function () 
     Route::put('/zassessions/{zassession}/games/{game}/update', [GamesController::class, 'update'])
         ->name('games.update');
 });
+
+Route::middleware(['auth','check.type:admin'])->group(function () {
+    Route::patch('/profile/zas/{user}/deactivate', [ProfileController::class, 'deactivate'])
+        ->name('profile.zas.deactivate');
+    Route::patch('/profile/zas/{user}/reactivate', [ProfileController::class, 'reactivate'])
+        ->name('profile.zas.reactivate');
+});
 // Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
-
     // todos los usuarios: Apuntarse/borrarse de una sesión, apuntarse a partidas
     Route::get('/zassessions', [ZassessionsController::class, 'index'])
         ->name('zassessions.index');
@@ -93,7 +101,6 @@ Route::middleware(['auth','check.type:admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 });
 Route::middleware(['auth','check.type:admin,junta'])->group(function () {
     Route::resource('types', TypesController::class);    

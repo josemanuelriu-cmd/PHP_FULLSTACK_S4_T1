@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -111,5 +112,21 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function deactivate(User $user)
+    {
+        $user->withdrawal_date = now();
+        $user->save();
+
+        return back()->with('status', __('messages.Unsubscribed user'));
+    }
+
+    public function reactivate(User $user)
+    {
+        $user->withdrawal_date = null;
+        $user->save();
+
+        return back()->with('status',  __('messages.Reactivated user'));
     }
 }
