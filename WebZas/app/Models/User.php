@@ -86,5 +86,17 @@ class User extends Authenticatable
                 $user->type = 'guest';
             }
         });
-    }    
+    }
+    public function isActive()
+    {
+        return $this->withdrawal_date === null;
+    }
+    public function scopeActive($query)
+    {
+        return $query->whereNull('withdrawal_date');
+    }
+    public function scopeInactive($query)
+    {
+        return $query->whereNotNull('withdrawal_date');
+    }
 }
