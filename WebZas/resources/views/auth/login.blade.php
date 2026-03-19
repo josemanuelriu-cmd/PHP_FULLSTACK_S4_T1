@@ -19,7 +19,7 @@
                 <div>
                     <x-label for="email" :value="__('messages.Email')" class="text-zas-dark"/>
                     <x-input id="email" class="block mt-1 w-full" type="email" name="email" 
-                    value="ryuadmin@zas.es" 
+                    value="" 
                     required autofocus />
                 </div>
 
@@ -27,7 +27,7 @@
                 <div class="mt-4">
                     <x-label for="password" :value="__('messages.Password')" class="text-zas-dark"/>
                     <x-input id="password" class="block mt-1 w-full" type="password" name="password" 
-                    value="RyuAdmin" 
+                    value="" 
                     required autocomplete="current-password" />
                 </div>
 

@@ -22,13 +22,9 @@ class StoreGameRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //'zassession_id' => 'required|integer', 
             'boardgame_id' => 'required|integer',
-            //'host_user_id' => 'required|integer',
-            //'max_players' => 'required|integer|min:1',
             'start_time' => 'required|date_format:H:i',
             'status' => 'required|string'
-            //'necesary_know_how' => 'required|boolean'
         ];
     }
     public function attributes(): array

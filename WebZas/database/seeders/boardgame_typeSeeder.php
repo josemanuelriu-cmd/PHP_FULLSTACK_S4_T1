@@ -15,44 +15,44 @@ class boardgame_typeSeeder extends Seeder
     {
         DB::table('boardgame_type')->insert([
             [
-                'boardgame_id' => 1, // Catan
-                'type_id' => 8, // dados
+                'boardgame_id' => 1, 
+                'type_id' => 8, 
             ],
             [
-                'boardgame_id' => 1, // Catan
-                'type_id' => 10, // estrategia
+                'boardgame_id' => 1, 
+                'type_id' => 10, 
             ],
             [
-                'boardgame_id' => 1, // Catan
-                'type_id' => 12, // familiar
+                'boardgame_id' => 1, 
+                'type_id' => 12, 
             ],
             [
-                'boardgame_id' => 2, // Carcassonne
-                'type_id' => 5, // colocación de trabajadores
+                'boardgame_id' => 2, 
+                'type_id' => 5, 
             ],
             [
-                'boardgame_id' => 2, // Carcassonne
-                'type_id' => 10, // estrategia
+                'boardgame_id' => 2, 
+                'type_id' => 10, 
             ],
             [
-                'boardgame_id' => 2, // Carcassonne
-                'type_id' => 11, // eurogame
+                'boardgame_id' => 2, 
+                'type_id' => 11, 
             ],
             [
-                'boardgame_id' => 3, // Bang
-                'type_id' => 1, // abstracto
+                'boardgame_id' => 3, 
+                'type_id' => 1, 
             ],
             [
-                'boardgame_id' => 3, // Bang
-                'type_id' => 3, // cartas
+                'boardgame_id' => 3, 
+                'type_id' => 3, 
             ],
             [
-                'boardgame_id' => 3, // Bang
-                'type_id' => 10, // estrategia
+                'boardgame_id' => 3, 
+                'type_id' => 10, 
             ],
             [
-                'boardgame_id' => 3, // Bang
-                'type_id' => 19, // roles ocultos
+                'boardgame_id' => 3, 
+                'type_id' => 19, 
             ],
         ]);
     }

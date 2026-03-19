@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('zassessions', function (Blueprint $table) {
             $table->id()->primary();
-            $table->string('name');//nombre del lugar. Can verdaguer, Ate, etc
-            $table->string('event_name')->nullable();//nombre del evento. Si es una sesión normal de zas, A rol, LNMLMCDJ, etc
+            $table->string('name');
+            $table->string('event_name')->nullable();
             $table->date('date')->index();
             $table->time('start_time');
             $table->time('end_time');

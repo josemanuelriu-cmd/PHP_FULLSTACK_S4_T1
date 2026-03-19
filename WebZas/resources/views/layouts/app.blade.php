@@ -7,22 +7,18 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased relative min-h-screen bg-[#F3F4F6]">
-        <!-- Marca de agua -->
         <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-10">
             <img src="{{ asset('images/logo.png') }}" alt="ZAS Club Logo" class="w-1/2 h-auto object-contain">
         </div>
         <div class="relative z-10 min-h-screen">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
             @isset($header)
                 <header class="bg-[#F3F4F6]  shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -31,7 +27,6 @@
                 </header>
             @endisset
 
-            <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>

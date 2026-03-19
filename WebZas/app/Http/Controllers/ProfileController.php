@@ -43,14 +43,12 @@ class ProfileController extends Controller
     {
         $authUser = $request->user();
 
-        // Si no se pasa usuario, editar el propio
         if (!$user) {
             $user = $authUser;
         }
 
         $users = null;
 
-        // Si es admin, cargar lista de usuarios
         if ($authUser->type === 'admin') {
             $users = User::orderBy('name')->get();
         }

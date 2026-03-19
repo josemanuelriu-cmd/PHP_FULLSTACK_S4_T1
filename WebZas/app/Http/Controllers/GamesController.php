@@ -4,26 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGameRequest;
 use Illuminate\Http\Request;
-use App\Models\zassessions;
-use App\Models\boardgames;
+use App\Models\Zassessions;
+use App\Models\Boardgames;
 use App\Models\Boardgames as ModelsBoardgames;
-//use App\Models\user;
-use App\Models\games;
+use App\Models\Games;
 use Illuminate\Support\Facades\Auth;
 
 class GamesController extends Controller
 {
     public function create(zassessions $zassession)
     {
-        //$user = auth()->user();
         $user = Auth::user();
 
-        // usuarios apuntados a la sesión
         $users = $zassession->users;
 
-        // juegos disponibles
         $boardgames = boardgames::where(function ($query) use ($user) {
-
             $query->where('owner_user_id',null)
                 ->orWhere('owner_user_id',$user->id);
 
@@ -39,7 +34,6 @@ class GamesController extends Controller
     {
         $boardgame = Boardgames::findOrFail($request->boardgame_id);
 
-        // crear partida
         $game = Games::create([
             'zassession_id' => $zassession->id,
             'boardgame_id' => $boardgame->id,
@@ -50,7 +44,6 @@ class GamesController extends Controller
             'necesary_know_how' => $request->boolean('necesary_know_how')
         ]);
 
-        // añadir jugadores
         $game->players()->attach($request->players);
 
         return redirect()

@@ -24,7 +24,6 @@
                             {{ $type->type }}
                         </h3>
 
-
                         <a href="{{ route('types.show', $type) }}"
                            class="text-zas-primary font-semibold hover:underline">
                             {{ __('messages.see file') }} →

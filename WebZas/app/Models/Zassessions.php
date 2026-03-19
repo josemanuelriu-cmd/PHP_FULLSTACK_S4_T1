@@ -14,8 +14,8 @@ class Zassessions extends Model
     protected function direction(): CastsAttribute
     {
         return CastsAttribute::make(
-            get: fn ($value) => ucwords($value), //Convierte el valor a mayúscula cada palabra al obtenerlo
-            set: fn ($value) => strtolower($value) //Convierte el valor a minúscula al establecerlo
+            get: fn ($value) => ucwords($value), 
+            set: fn ($value) => strtolower($value) 
         );
 
     }
@@ -34,7 +34,6 @@ class Zassessions extends Model
         ];
      }
 
-    //relacion muchos a muchos con la tabla users. Mirar video muhos a muchos min 12/13
     public function users()
     {
         return $this->belongsToMany(

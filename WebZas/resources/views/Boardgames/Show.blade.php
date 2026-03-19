@@ -20,7 +20,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
         </a>
 
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success bg-green-200 text-green-800 p-3 rounded mb-4" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)">
                 {{ session('success') }}
             </div>
         @endif

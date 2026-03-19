@@ -5,7 +5,7 @@
     else {
         $isJoined = false;
     }
-    $isFull = $zassession->users->count() >= $zassession->max_users+1;//añado 1 para poder entrar 1 parsona mas del limite teorico
+    $isFull = $zassession->users->count() >= $zassession->max_users+1;
 
     $maxSlots = 16;
     $users = $zassession->users->values();

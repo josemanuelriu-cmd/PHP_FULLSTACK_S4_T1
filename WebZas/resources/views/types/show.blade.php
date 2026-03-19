@@ -4,7 +4,6 @@
             <h2 class="font-semibold text-2xl text-zas-primary leading-tight">
                 🧮 {{ __('messages.Game types') }}
             </h2>
-
         </div>
     </x-slot>
 

@@ -5,9 +5,7 @@ $logeado = auth()->check() ? true : false;
 <nav class="bg-zas-light border-b border-zas-primary/20 dark:bg-zas-primary dark:border-zas-primary/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <!-- Lado izquierdo: logo y links principales -->
             <div class="flex">
-                <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <span class="text-zas-light font-bold text-xl">
                         ZAS! Juegos de mesa y rol
@@ -20,29 +18,24 @@ $logeado = auth()->check() ? true : false;
                     </x-nav-link>
 
                     @if($logeado)
-                        <!-- Todos: Juegos -->
                         <x-nav-link :href="route('boardgames.index')" :active="request()->routeIs('boardgames.*')" class="text-zas-dark hover:text-zas-light">
                             {{ __('messages.Boardgames') }}
                         </x-nav-link>
-                        <!-- Admin: Perfil -->
                         @if(Auth::user()->type === 'admin')
                         <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')" class="text-zas-dark hover:text-zas-light">
                             {{ __('messages.Change password') }}
                         </x-nav-link>
                         @endif
-                        <!-- Todos logueados: PerfilZas -->
                          @if(Auth::user())
                             <x-nav-link :href="route('profile.zas.edit')" :active="request()->routeIs('profile.zas.*')" class="text-zas-dark hover:text-zas-light">
                                 {{ __('messages.Profile') }}
                             </x-nav-link>
                         @endif
-                        <!-- Admin y junta: Tipos -->
                         @if(in_array(Auth::user()->type, ['admin', 'junta']))
                         <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.*')" class="text-zas-dark hover:text-zas-light">
                             {{ __('messages.Types') }}
                         </x-nav-link>
                         @endif
-                        <!-- Todos: Sesiones -->
                         <x-nav-link :href="route('zassessions.index')" :active="request()->routeIs('zassessions.*')" class="text-zas-dark hover:text-zas-light">
                             {{ __('messages.Sessions') }}
                         </x-nav-link>
@@ -58,7 +51,6 @@ $logeado = auth()->check() ? true : false;
                 </div>
             </div>
             @if ($logeado)
-                <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -71,7 +63,6 @@ $logeado = auth()->check() ? true : false;
                         </x-slot>
 
                         <x-slot name="content">
-                            <!-- Logout -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"

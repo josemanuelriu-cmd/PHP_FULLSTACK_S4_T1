@@ -1,5 +1,4 @@
 <x-guest-layout>
-
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-zas-primary">
             🎲 Club de Juegos ZAS!
@@ -26,7 +25,7 @@
                 </p>
 
                 @include('zassessions.session')
-     
+            </div>
         @endif
     </div>
 </x-guest-layout>

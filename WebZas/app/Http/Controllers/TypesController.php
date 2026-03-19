@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTypeRequest;
 use Illuminate\Http\Request;
-use App\Models\types;
+use App\Models\Types;
 use Nette\Utils\Type;
 
 class TypesController extends Controller

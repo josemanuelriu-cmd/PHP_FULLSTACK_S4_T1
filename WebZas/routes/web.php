@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Zassessions;
-use App\Http\Controllers\BoardGamesController;
+use App\Http\Controllers\BoardgamesController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\ZassessionsController;
 use App\Http\Controllers\ProfileController;
@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-//para multilenguaje
 Route::get('/lang/{locale}', function ($locale) {
     
 if (!in_array($locale, ['es','en','ca'])) {
@@ -34,14 +32,12 @@ if (!in_array($locale, ['es','en','ca'])) {
 })->name('lang.switch');
 
 
-// Binding manual para Zassessions
 Route::bind('zassessions', function ($value) {
     return Zassessions::findOrFail($value);
 });
 
-//Rutas para admin, junta y socios
 Route::middleware(['auth','check.type:admin,junta,partner'])->group(function () {
-    Route::resource('boardgames', BoardGamesController::class)
+    Route::resource('boardgames', BoardgamesController::class)
         ->except(['index','show']);     
     Route::resource('zassessions', ZassessionsController::class)
         ->parameters(['zassessions' => 'zassessions'])
@@ -68,16 +64,16 @@ Route::middleware(['auth','check.type:admin'])->group(function () {
     Route::patch('/profile/zas/{user}/reactivate', [ProfileController::class, 'reactivate'])
         ->name('profile.zas.reactivate');
 });
-// Rutas que requieren autenticación
+
 Route::middleware('auth')->group(function () {
-    // todos los usuarios: Apuntarse/borrarse de una sesión, apuntarse a partidas
+    
     Route::get('/zassessions', [ZassessionsController::class, 'index'])
         ->name('zassessions.index');
     Route::get('/zassessions/{zassessions}', [ZassessionsController::class, 'show'])
         ->name('zassessions.show');
-    Route::get('/boardgames', [BoardGamesController::class, 'index'])
+    Route::get('/boardgames', [BoardgamesController::class, 'index'])
         ->name('boardgames.index');
-    Route::get('/boardgames/{boardgame}', [BoardGamesController::class, 'show'])
+    Route::get('/boardgames/{boardgame}', [BoardgamesController::class, 'show'])
         ->name('boardgames.show');
     Route::post('/zassessions/{zassession}/join', [ZassessionsController::class, 'join'])
         ->name('zassessions.join');
@@ -105,7 +101,5 @@ Route::middleware(['auth','check.type:admin'])->group(function () {
 Route::middleware(['auth','check.type:admin,junta'])->group(function () {
     Route::resource('types', TypesController::class);    
 });
-
-
 
 require __DIR__.'/auth.php';
