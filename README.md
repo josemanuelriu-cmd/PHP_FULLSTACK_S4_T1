@@ -81,13 +81,13 @@ ZAS! Juegos de Mesa y Rol es una plataforma web que permite a los miembros de un
 
 ## 📸 Capturas de pantalla
 
-![Pantalla inicio](Webzas/docs/images/Screenshot_1.png)
-![Inicio sesión](Webzas/docs/images/Screenshot_2.png)
-![Juegos de mesa](Webzas/docs/images/Screenshot_3.png)
-![Cambiar contraseña](Webzas/docs/images/Screenshot_4.png)
-![Perfil](Webzas/docs/images/Screenshot_5.png)
-![Tipos](Webzas/docs/images/Screenshot_6.png)
-![Sessiones](Webzas/docs/images/Screenshot_7.png)
+![Pantalla inicio](WebZas/docs/images/Screenshot_1.png)
+![Inicio sesión](WebZas/docs/images/Screenshot_2.png)
+![Juegos de mesa](WebZas/docs/images/Screenshot_3.png)
+![Cambiar contraseña](WebZas/docs/images/Screenshot_4.png)
+![Perfil](WebZas/docs/images/Screenshot_5.png)
+![Tipos](WebZas/docs/images/Screenshot_6.png)
+![Sessiones](WebZas/docs/images/Screenshot_7.png)
 
 ---
 
