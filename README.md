@@ -81,13 +81,13 @@ ZAS! Juegos de Mesa y Rol es una plataforma web que permite a los miembros de un
 
 ## 📸 Capturas de pantalla
 
-![Pantalla inicio](docs/images/Screenshot_1.png)
-![Inicio sesión](docs/images/Screenshot_2.png)
-![Juegos de mesa](docs/images/Screenshot_3.png)
-![Cambiar contraseña](docs/images/Screenshot_4.png)
-![Perfil](docs/images/Screenshot_5.png)
-![Tipos](docs/images/Screenshot_6.png)
-![Sessiones](docs/images/Screenshot_7.png)
+![Pantalla inicio](Webzas/docs/images/Screenshot_1.png)
+![Inicio sesión](Webzas/docs/images/Screenshot_2.png)
+![Juegos de mesa](Webzas/docs/images/Screenshot_3.png)
+![Cambiar contraseña](Webzas/docs/images/Screenshot_4.png)
+![Perfil](Webzas/docs/images/Screenshot_5.png)
+![Tipos](Webzas/docs/images/Screenshot_6.png)
+![Sessiones](Webzas/docs/images/Screenshot_7.png)
 
 ---
 
@@ -345,7 +345,7 @@ Rama de desarrollo con el código actual del proyecto:
 
 ## 📊 Estado del proyecto
 
-Proyecto académico desarrollado como práctica dentro de un curso de desarrollo web.
+Proyecto académico desarrollado como práctica dentro de un curso de desarrollo web en PHP.
 
 ---
 
