@@ -16,8 +16,7 @@
     $isHost = $game->host_user_id === $user->id;
     $isAdmin = $user->type === 'admin';
     $isGuest = $user->type === 'guest';
-    //$isUserJoined lo creo en el controlador
-
+    
 @endphp
 
     <div class="max-w-4xl mx-auto px-4 py-8">
@@ -28,7 +27,7 @@
         </a>
 
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success bg-green-200 text-green-800 p-3 rounded mb-4" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)">
                 {{ session('success') }}
             </div>
         @endif
@@ -71,7 +70,6 @@
                 <div class="grid md:grid-rows-2 gap-8">
                     
                     <div>
-                        <!--  No esta apuntado a la partida, no esta la partida llena, esta apuntado a la session, es una partida abierta o es limitada pero no es un invitado -->
                         @if(!$isJoined && !$isFull && $isUserJoined && ($isOpen || ($isLimited && !$isGuest)))
                             <form method="POST" action="{{ route('games.join', [$zassession, $game]) }}">
                                 @csrf
@@ -98,7 +96,6 @@
 
             <div class="grid md:grid-cols-4 gap-2">
                 <div>
-                    <!-- solo el host y el admin pueden editar una partida -->
                     @if ($isHost || $isAdmin)
                         <a href="{{ route('games.edit', [$zassession,$game]) }}"
                         class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
@@ -107,7 +104,6 @@
                     @endif
                 </div>
                 <div>
-                    <!-- solo el host y el admin pueden borrar una partida -->
                     @if ($isHost || $isAdmin)
                         <form method="POST" action="{{ route('games.destroy', [$zassession,$game]) }}">
                         @csrf
@@ -122,7 +118,6 @@
                     @endif
                 </div>
                 <div>
-                    <!-- solo el host y el admin pueden cerrar una partida -->
                     @if (($isHost || $isAdmin) && $isOpen)
                         <a href="{{ route('games.close', [$zassession,$game]) }}"
                         class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
@@ -131,7 +126,6 @@
                     @endif
                 </div>
                 <div>
-                    <!-- solo el host y el admin pueden reabrir una partida -->
                     @if (($isHost || $isAdmin) && (!$isOpen && !$isLimited))
                         <a href="{{ route('games.reopen', [$zassession,$game]) }}"
                         class="bg-zas-primary px-4 py-2 rounded-lg text-white hover:bg-zas-primaryHover transition">
@@ -139,8 +133,7 @@
                         </a>
                     @endif
                 </div>
-            </div>
-            
+            </div>            
 
         </div>
     </div>

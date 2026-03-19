@@ -59,13 +59,12 @@
             class="w-full mt-1 border-zas-primary border rounded-lg focus:ring-zas-primary focus:border-zas-primary shadow-sm pl-2">
     </div>
 </div>
-<!-- Dual listbox para tipos -->
+
 <div>
     <label class="block font-medium text-gray-700 mb-2">
         {{ __('messages.Types') }}
     </label>
     <div id="dual-listbox" class="grid grid-cols-2 gap-4">
-        <!-- Tipos disponibles -->
         <div class="bg-white shadow rounded p-2">
             <h3 class="font-bold mb-2">
                 {{ __('messages.Available') }}
@@ -84,7 +83,6 @@
             </ul>
         </div>
 
-        <!-- Tipos seleccionados -->
         <div class="bg-white shadow rounded p-2">
             <h3 class="font-bold mb-2">
                 {{ __('messages.Selected') }}
@@ -116,11 +114,9 @@
 
 <script>
 function moveToSelected(id, text, button) {
-    // eliminar del listado disponible
     const li = button.parentElement;
     li.remove();
 
-    // crear nuevo elemento en selected
     const ul = document.getElementById('selected_types');
     const newLi = document.createElement('li');
     newLi.className = 'flex justify-between items-center p-1 border rounded';
@@ -135,11 +131,9 @@ function moveToSelected(id, text, button) {
 }
 
 function moveToAvailable(id, text, button) {
-    // eliminar del listado seleccionado
     const li = button.parentElement;
     li.remove();
 
-    // crear nuevo elemento en available
     const ul = document.getElementById('available_types');
     const newLi = document.createElement('li');
     newLi.className = 'flex justify-between items-center p-1 border rounded';

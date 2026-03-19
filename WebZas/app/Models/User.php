@@ -55,7 +55,6 @@ class User extends Authenticatable
         ];
     }
 
-    //relacion muchos a muchos con la tabla zassession. Mirar video muhos a muchos min 12/13
     public function zassession()
     {
         return $this->belongsToMany(

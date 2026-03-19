@@ -10,10 +10,11 @@ $canManageSession = in_array($user->type, ['admin','junta']);
             </h2>
 
             <form method="GET" action="{{ route('zassessions.index') }}" class="mb-4">
-                <label class="flex items-center gap-2">
+                <label class="flex items-center gap-2 text-zas-primary">
                     <input type="checkbox"
                         name="show_past"
                         value="1"
+                        
                         onchange="this.form.submit()"
                         {{ $showPast ? 'checked' : '' }}>
                     {{ __('messages.Show past sessions') }}

@@ -1,7 +1,7 @@
 @php
 $user = auth()->user();
 $isJoined = $zassession->users->contains($user->id);
-$isFull = $zassession->users->count() >= $zassession->max_users+1;//añado 1 para poder entrar 1 parsona mas del limite teorico
+$isFull = $zassession->users->count() >= $zassession->max_users+1;
 $canManageSession = in_array($user->type, ['admin','junta']);
 $canCreateGame = in_array($user->type, ['admin','junta','partner']);
 @endphp
@@ -76,12 +76,10 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
 
             </div>
             @if(session('success'))
-                <div class="bg-green-200 text-green-800 p-3 rounded mb-4 mt-4">
+                <div class="alert alert-success bg-green-200 text-green-800 p-3 rounded mb-4" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)">
                     {{ session('success') }}
                 </div>
             @endif
-
         </div>
-
     </div>
 </x-app-layout>

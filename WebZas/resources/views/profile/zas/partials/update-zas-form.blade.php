@@ -139,9 +139,7 @@
     </form>
     @if($authUser->type === 'admin' && $authUser->id !== $user->id)
         <div class="mt-4">
-
             @if($user->withdrawal_date)
-                <!-- REACTIVAR -->
                 <form method="POST" action="{{ route('profile.zas.reactivate', $user->id) }}">
                     @csrf
                     @method('PATCH')
@@ -151,7 +149,6 @@
                     </button>
                 </form>
             @else
-                <!-- DAR DE BAJA -->
                 <form method="POST" action="{{ route('profile.zas.deactivate', $user->id) }}">
                     @csrf
                     @method('PATCH')

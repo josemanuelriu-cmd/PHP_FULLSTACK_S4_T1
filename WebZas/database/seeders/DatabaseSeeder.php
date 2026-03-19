@@ -21,15 +21,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             BoardGamesSeeder::class,
-            //sessions_zasSeeder::class,
             zassessionsSeeder::class,
             typesSeeder::class,
             boardgame_typeSeeder::class,
             user_zassessionSeeder::class,  
             gamesSeeder::class,
             game_userSeeder::class,          
-        ]);
-
-       
+        ]);       
     }
 }

@@ -6,8 +6,8 @@ use App\Http\Requests\StoreZassessionsRequest;
 use App\Http\Requests\UpdateZassessionsRequest;
 use App\Models\Boardgames;
 use Illuminate\Http\Request;
-use App\Models\zassessions;
-use App\Models\user;
+use App\Models\Zassessions;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ZassessionsController extends Controller
@@ -16,7 +16,6 @@ class ZassessionsController extends Controller
     {         
         $query = Zassessions::orderBy('date', 'asc');
 
-        // Si NO se pide mostrar sesiones pasadas
         if (!$request->has('show_past')) {
             $query->whereDate('date', '>=', today());
         }   
@@ -36,7 +35,7 @@ class ZassessionsController extends Controller
             'games.players',
             'games.host'
             ]);
-        $users = User::orderBy('nickname')->get(); // todos los usuarios disponibles
+        $users = User::orderBy('nickname')->get(); 
         return view('Zassessions.show', [
             'zassession' => $Zassession,
             'users' => $users
@@ -66,20 +65,6 @@ class ZassessionsController extends Controller
     }
     public function update(UpdateZassessionsRequest $request, Zassessions $Zassession)
     {
-        /*
-        $request->validate([
-            'date' => 'required|date|after_or_equal:today|unique:Zassessions,date,' . $Zassession->date,
-            'name' => 'required|string|min:3|max:255|unique:Zassessions,name,' . $Zassession->name,
-            'event_name' => 'nullable|string|min:3|max:255',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
-            'max_users' => 'required|integer|min:1',
-            'direction' => 'required|string|min:5|max:255',
-            'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180'
-        ]);
-        */
-
         $Zassession->update($request->all());
         return redirect()->route('zassessions.show', $Zassession);
     }
@@ -106,13 +91,10 @@ class ZassessionsController extends Controller
 
     public function createGame(Zassessions $zassession)
     {
-        //$user = auth()->user();
         $user = Auth::user();
 
-        // Usuarios que pueden jugar (los apuntados a la sesión)
         $users = $zassession->users;
 
-        // Juegos disponibles
         $boardgames = \App\Models\Boardgames::where(function ($query) use ($user) {
             $query->where('owner_user_id',  $user->id)
                 ->orWhere('owner_user_id', null);
@@ -122,8 +104,7 @@ class ZassessionsController extends Controller
             'zassession' => $zassession,
             'users' => $users,
             'boardgames' => $boardgames
-        ]);
-            
+        ]);            
     }
 
     public function storeGame(Request $request, Zassessions $zassession)
@@ -133,9 +114,7 @@ class ZassessionsController extends Controller
             'players' => 'required|array|min:1'
         ]);
 
-        // aquí guardarías la partida
-
-        return redirect()
+         return redirect()
             ->route('zassessions.show', $zassession)
             ->with('success', __('messages.Created game'));
     }
