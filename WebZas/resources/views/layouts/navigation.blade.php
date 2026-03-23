@@ -15,11 +15,11 @@
                     <x-nav-link :href="route('boardgames.index')" :active="request()->routeIs('boardgames.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('messages.Boardgames') }}
                     </x-nav-link>
-                    @if(Auth::user()->type === 'admin')
+                    
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('messages.Change password') }}
                     </x-nav-link>
-                    @endif
+                    
                     <x-nav-link :href="route('profile.zas.edit')" :active="request()->routeIs('profile.zas.*')" class="text-zas-dark hover:text-zas-light">
                         {{ __('messages.Profile') }}
                     </x-nav-link>
