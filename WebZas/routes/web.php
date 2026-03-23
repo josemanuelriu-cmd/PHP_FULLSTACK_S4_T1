@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
         ->name('games.join');
     Route::delete('/zassessions/{zassession}/games/{game}/leave', [GamesController::class, 'leave'])
         ->name('games.leave');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/zas/{user?}', [ProfileController::class, 'editZas'])->name('profile.zas.edit');
     Route::patch('/profile/zas/{user?}', [ProfileController::class, 'updateZas'])->name('profile.zas.update');
     
@@ -94,7 +95,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/post/{id}', [PostController::class, 'show']);    
 });
 Route::middleware(['auth','check.type:admin'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
