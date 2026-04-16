@@ -106,7 +106,7 @@ $canManageSession = in_array($user->type, ['admin','junta']);
                             {{ $boardgame->name }}
                         </h3>
 
-                        <p class="text-zas-gray mb-2">👥 {{ $boardgame->min_players }} - {{ $boardgame->max_players }} {{ __('messages.players') }}</p>
+                        <p class="text-zas-gray mb-2">👥 {{ $boardgame->min_players }} - {{ $boardgame->max_players }} {{ __('messages.Players') }}</p>
                         <p class="text-zas-gray mb-2">🎂 {{ $boardgame->min_age }}+ {{ __('messages.years') }}</p>
                         <p class="text-zas-gray mb-2">⏳ {{ $boardgame->duration }} {{ __('messages.minutes') }}</p>
 
