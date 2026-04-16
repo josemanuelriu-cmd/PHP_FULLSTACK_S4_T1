@@ -261,7 +261,9 @@ La aplicación permite seleccionar el idioma desde el perfil:
     git clone https://github.com/josemanuelriu-cmd/PHP_FULLSTACK_S4_T1    
 
     cd PHP_FULLSTACK_S4_T1\WebZas
-
+    # es necesario tener instalado node.js. Instalarlo si no se tiene:
+    https://nodejs.org/en/download
+    
     # Instalar dependencias
     composer install
     npm install && npm run dev
