@@ -1,4 +1,4 @@
-<nav class="bg-zas-light border-b border-zas-primary/20 dark:bg-zas-primary">
+<nav class="bg-zas-primary border-b border-zas-primary/20 dark:bg-zas-primary">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
