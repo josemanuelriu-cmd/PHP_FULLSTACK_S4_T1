@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/xampp/htdocs/Sprint5/PHP_FULLSTACK_S5_T2/src/pages/**)",
+      "Read(//c/xampp/htdocs/Sprint5/PHP_FULLSTACK_S5_T2/src/components/**)",
+      "Read(//c/xampp/htdocs/Sprint5/PHP_FULLSTACK_S5_T2/src/**)",
+      "Bash(xargs cat *)"
+    ]
+  }
+}

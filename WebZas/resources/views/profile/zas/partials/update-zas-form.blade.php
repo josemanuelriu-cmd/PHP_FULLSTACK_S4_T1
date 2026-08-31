@@ -137,6 +137,68 @@
             <x-primary-button>{{ __('messages.Save') }}</x-primary-button>
         </div>
     </form>
+    {{-- Theme selector: only for own profile --}}
+    @if($authUser->id === $user->id)
+    <div class="mt-8 pt-6 border-t border-gray-200">
+        <h3 class="text-lg font-medium text-zas-primary mb-1">
+            🎨 {{ __('messages.Visual theme') }}
+        </h3>
+        <p class="text-sm text-zas-dark mb-4">
+            {{ __('messages.Choose the visual style of the interface') }}
+        </p>
+
+        <div class="flex gap-4 flex-wrap">
+            {{-- Classic theme option --}}
+            <form method="POST" action="{{ route('profile.theme.update') }}" style="flex:1;min-width:160px;">
+                @csrf
+                <input type="hidden" name="theme" value="classic">
+                <button type="button" onclick="this.closest('form').submit()"
+                        class="theme-option-card w-full text-left {{ $authUser->theme === 'classic' ? 'selected' : '' }}"
+                        style="background:white; border: 2px solid {{ $authUser->theme === 'classic' ? '#800020' : '#e5e7eb' }};">
+                    @if($authUser->theme === 'classic')
+                        <span class="theme-selected-badge">✓ {{ __('messages.Active') }}</span>
+                    @endif
+                    <div class="theme-preview theme-preview-classic">
+                        <div class="theme-preview-bar theme-preview-bar-classic"></div>
+                        <div class="theme-preview-content">
+                            <div class="theme-preview-card-classic"></div>
+                            <div class="theme-preview-card-classic"></div>
+                        </div>
+                    </div>
+                    <label class="block font-semibold text-zas-dark text-sm cursor-pointer">
+                        ☀️ {{ __('messages.Classic theme') }}
+                    </label>
+                    <p class="text-xs text-zas-gray mt-1">{{ __('messages.Classic theme description') }}</p>
+                </button>
+            </form>
+
+            {{-- Elegant theme option --}}
+            <form method="POST" action="{{ route('profile.theme.update') }}" style="flex:1;min-width:160px;">
+                @csrf
+                <input type="hidden" name="theme" value="elegant">
+                <button type="button" onclick="this.closest('form').submit()"
+                        class="theme-option-card w-full text-left {{ $authUser->theme === 'elegant' ? 'selected' : '' }}"
+                        style="background:white; border: 2px solid {{ $authUser->theme === 'elegant' ? '#800020' : '#e5e7eb' }};">
+                    @if($authUser->theme === 'elegant')
+                        <span class="theme-selected-badge">✓ {{ __('messages.Active') }}</span>
+                    @endif
+                    <div class="theme-preview theme-preview-elegant">
+                        <div class="theme-preview-bar theme-preview-bar-elegant"></div>
+                        <div class="theme-preview-content">
+                            <div class="theme-preview-card-elegant"></div>
+                            <div class="theme-preview-card-elegant"></div>
+                        </div>
+                    </div>
+                    <label class="block font-semibold text-zas-dark text-sm cursor-pointer">
+                        🌙 {{ __('messages.Elegant theme') }}
+                    </label>
+                    <p class="text-xs text-zas-gray mt-1">{{ __('messages.Elegant theme description') }}</p>
+                </button>
+            </form>
+        </div>
+    </div>
+    @endif
+
     @if($authUser->type === 'admin' && $authUser->id !== $user->id)
         <div class="mt-4">
             @if($user->withdrawal_date)

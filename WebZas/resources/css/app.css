@@ -1,3 +1,24 @@
+@import './theme-elegant.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Global responsive improvements (both themes) ── */
+@media (max-width: 640px) {
+  /* Page headers: prevent overflow on small screens */
+  .max-w-7xl header .flex,
+  .max-w-4xl .flex.justify-between,
+  .max-w-6xl .flex.justify-between {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Content padding reduction on mobile */
+  .max-w-6xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

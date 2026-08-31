@@ -112,6 +112,17 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+    public function updateTheme(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'theme' => ['required', 'in:classic,elegant'],
+        ]);
+
+        $request->user()->update(['theme' => $request->theme]);
+
+        return Redirect::back()->with('status', __('messages.Theme updated'));
+    }
+
     public function deactivate(User $user)
     {
         $user->withdrawal_date = now();

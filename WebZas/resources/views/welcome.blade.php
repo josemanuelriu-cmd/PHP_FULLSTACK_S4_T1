@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-zas-primary">
             🎲 Club de Juegos ZAS!
@@ -28,4 +28,4 @@
             </div>
         @endif
     </div>
-</x-guest-layout>
+</x-app-layout>
