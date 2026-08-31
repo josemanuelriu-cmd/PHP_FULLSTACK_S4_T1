@@ -1,0 +1,584 @@
+/* ══════════════════════════════════════════════════
+   TEMA ELEGANT — Dark visual style
+   Inspired by Sprint5 / PHP_FULLSTACK_S5_T2
+   Activated via: <html data-theme="elegant">
+══════════════════════════════════════════════════ */
+
+/* ── Responsive: font scale for Cinzel in elegant ── */
+[data-theme="elegant"] .text-4xl {
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem) !important;
+  line-height: 1.15 !important;
+}
+[data-theme="elegant"] .text-3xl {
+  font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
+  line-height: 1.2 !important;
+}
+[data-theme="elegant"] .text-2xl {
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem) !important;
+  line-height: 1.25 !important;
+}
+[data-theme="elegant"] .text-xl {
+  font-size: clamp(0.95rem, 2vw, 1.15rem) !important;
+}
+
+/* ── Responsive: mobile nav menu (elegant) ───────── */
+[data-theme="elegant"] nav .sm\:hidden.border-t {
+  background: rgba(10,7,8,0.97) !important;
+  border-top-color: var(--eg-border3) !important;
+}
+[data-theme="elegant"] nav a.block.w-full {
+  color: var(--eg-text-muted) !important;
+  background: transparent !important;
+  border-left-color: transparent !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.2px !important;
+  text-transform: none !important;
+}
+[data-theme="elegant"] nav a.block.w-full:hover {
+  color: var(--eg-text) !important;
+  background: var(--eg-surface2) !important;
+}
+[data-theme="elegant"] nav a.block.w-full.border-zas-light {
+  color: var(--eg-primary) !important;
+  background: var(--eg-primary-pale) !important;
+  border-left-color: var(--eg-primary) !important;
+}
+[data-theme="elegant"] nav .text-zas-light\/80,
+[data-theme="elegant"] nav .text-zas-light\/60 {
+  color: var(--eg-text-muted) !important;
+}
+
+/* ── Responsive: general mobile improvements ─────── */
+@media (max-width: 640px) {
+  [data-theme="elegant"] .max-w-6xl.border-b {
+    padding: 1rem !important;
+  }
+  [data-theme="elegant"] .grid.md\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  [data-theme="elegant"] header h2 {
+    font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+  }
+  [data-theme="elegant"] .detail-stat-value,
+  [data-theme="elegant"] .text-4xl {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* ── CSS Variables ───────────────────────────────── */
+[data-theme="elegant"] {
+  --eg-primary:        #800020;
+  --eg-primary-hover:  #66001a;
+  --eg-primary-pale:   rgba(128,0,32,0.10);
+  --eg-primary-border: rgba(128,0,32,0.30);
+  --eg-borgona:        #6C63FF;
+  --eg-borgona-pale:   rgba(108,99,255,0.12);
+  --eg-bg:             #0e0a0b;
+  --eg-surface:        #1a1215;
+  --eg-surface2:       #231820;
+  --eg-surface3:       #2e1f27;
+  --eg-border:         rgba(255,255,255,0.07);
+  --eg-border2:        rgba(255,255,255,0.13);
+  --eg-border3:        rgba(128,0,32,0.25);
+  --eg-text:           #f0ebe8;
+  --eg-text-muted:     #9CA3AF;
+  --eg-text-dim:       #4a3d42;
+  --eg-gold:           #f0c040;
+  --eg-green:          #4aab78;
+  --eg-amber:          #d4963a;
+  --eg-red:            #e05a4a;
+  --eg-radius:         14px;
+  --eg-radius-sm:      8px;
+}
+
+/* ── Global: body & page background ─────────────── */
+[data-theme="elegant"] body {
+  background-color: var(--eg-bg) !important;
+  color: var(--eg-text) !important;
+  font-family: 'Raleway', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme="elegant"] .min-h-screen,
+[data-theme="elegant"] .relative.z-10.min-h-screen {
+  background-color: var(--eg-bg) !important;
+}
+
+/* ── Watermark ───────────────────────────────────── */
+[data-theme="elegant"] .absolute.inset-0 img {
+  opacity: 0.035 !important;
+  filter: grayscale(100%) brightness(4) !important;
+}
+
+/* ── Typography: headings use Cinzel serif ───────── */
+[data-theme="elegant"] h1,
+[data-theme="elegant"] h2,
+[data-theme="elegant"] h3,
+[data-theme="elegant"] h4 {
+  font-family: 'Cinzel', serif !important;
+  color: var(--eg-text) !important;
+}
+
+[data-theme="elegant"] p {
+  color: var(--eg-text-muted);
+}
+
+/* ── Navigation ──────────────────────────────────── */
+[data-theme="elegant"] nav {
+  background: rgba(14,10,11,0.92) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border-bottom: 0.5px solid var(--eg-border3) !important;
+}
+
+/* Nav brand logo */
+[data-theme="elegant"] nav img.brightness-0.invert {
+  filter: drop-shadow(0 0 6px rgba(128,0,32,0.5)) !important;
+  brightness: unset !important;
+}
+
+/* Nav brand text */
+[data-theme="elegant"] nav .text-zas-light {
+  color: var(--eg-text) !important;
+  font-family: 'Cinzel', serif !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 1px !important;
+}
+[data-theme="elegant"] nav .text-zas-light\/70 {
+  color: var(--eg-primary) !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 0.58rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+}
+
+/* Nav links */
+[data-theme="elegant"] nav a {
+  color: var(--eg-text-muted) !important;
+  border-radius: var(--eg-radius-sm) !important;
+  transition: color 0.15s, background 0.15s !important;
+}
+[data-theme="elegant"] nav a:hover {
+  color: var(--eg-text) !important;
+  background: var(--eg-surface2) !important;
+}
+[data-theme="elegant"] nav a[aria-current="page"],
+[data-theme="elegant"] nav a.border-zas-primary {
+  color: var(--eg-primary) !important;
+  background: var(--eg-primary-pale) !important;
+  border-bottom-color: var(--eg-primary) !important;
+}
+
+/* Dropdown trigger button */
+[data-theme="elegant"] nav button {
+  color: var(--eg-text) !important;
+  background: var(--eg-surface2) !important;
+  border: 0.5px solid var(--eg-border3) !important;
+  border-radius: 20px !important;
+  padding: 0.3rem 0.875rem !important;
+}
+[data-theme="elegant"] nav button:hover {
+  background: var(--eg-surface3) !important;
+}
+
+/* Dropdown menu */
+[data-theme="elegant"] .absolute.z-50,
+[data-theme="elegant"] [x-data] .absolute {
+  background: var(--eg-surface) !important;
+  border: 0.5px solid var(--eg-border3) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+
+[data-theme="elegant"] nav .bg-zas-primary {
+  background: var(--eg-surface2) !important;
+  color: var(--eg-text-muted) !important;
+}
+[data-theme="elegant"] nav .hover\:text-zas-dark:hover {
+  color: var(--eg-text) !important;
+}
+
+/* ── Page header bar ─────────────────────────────── */
+[data-theme="elegant"] header {
+  background-color: var(--eg-surface) !important;
+  box-shadow: none !important;
+  border-bottom: 0.5px solid var(--eg-border) !important;
+}
+
+[data-theme="elegant"] header h2 {
+  color: var(--eg-text) !important;
+  font-family: 'Cinzel', serif !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* ── Buttons ─────────────────────────────────────── */
+[data-theme="elegant"] .bg-zas-primary,
+[data-theme="elegant"] [class*="bg-zas-primary"] {
+  background-color: var(--eg-primary) !important;
+  color: #fff !important;
+  border-radius: var(--eg-radius-sm) !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 600 !important;
+  transition: all 0.18s ease !important;
+}
+[data-theme="elegant"] .bg-zas-primary:hover,
+[data-theme="elegant"] [class*="bg-zas-primary"]:hover {
+  background-color: var(--eg-primary-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+[data-theme="elegant"] button[type="submit"]:not(.tab-theme-btn) {
+  background-color: var(--eg-primary) !important;
+  color: #fff !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px !important;
+  border-radius: var(--eg-radius-sm) !important;
+  border: none !important;
+  transition: all 0.18s ease !important;
+}
+[data-theme="elegant"] button[type="submit"]:not(.tab-theme-btn):hover {
+  background-color: var(--eg-primary-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+[data-theme="elegant"] .bg-red-600 {
+  background-color: var(--eg-red) !important;
+  border-radius: var(--eg-radius-sm) !important;
+}
+[data-theme="elegant"] .bg-green-600 {
+  background-color: var(--eg-green) !important;
+  border-radius: var(--eg-radius-sm) !important;
+}
+[data-theme="elegant"] .bg-zas-gray {
+  background-color: var(--eg-surface3) !important;
+  color: var(--eg-text-muted) !important;
+  border-radius: var(--eg-radius-sm) !important;
+}
+
+/* ── Cards & white panels ────────────────────────── */
+[data-theme="elegant"] .bg-white {
+  background-color: var(--eg-surface) !important;
+  color: var(--eg-text) !important;
+  border-color: var(--eg-border) !important;
+}
+
+[data-theme="elegant"] .bg-zas-light {
+  background-color: var(--eg-surface) !important;
+  color: var(--eg-text) !important;
+}
+
+[data-theme="elegant"] .dark\:bg-gray-800 {
+  background-color: var(--eg-surface) !important;
+}
+
+/* Card hover effect */
+[data-theme="elegant"] .hover\:shadow-xl:hover {
+  box-shadow: 0 0 30px rgba(128,0,32,0.2) !important;
+  transform: translateY(-2px) !important;
+  border-color: var(--eg-primary-border) !important;
+}
+
+/* ── Alert / flash messages ──────────────────────── */
+[data-theme="elegant"] .bg-green-200 {
+  background-color: rgba(74,171,120,0.12) !important;
+  color: var(--eg-green) !important;
+  border: 0.5px solid rgba(74,171,120,0.3) !important;
+  border-radius: var(--eg-radius-sm) !important;
+}
+
+/* ── Borders ─────────────────────────────────────── */
+[data-theme="elegant"] .border-zas-primary,
+[data-theme="elegant"] .border-zas-primary\/20,
+[data-theme="elegant"] .border-zas-light {
+  border-color: var(--eg-border3) !important;
+}
+
+[data-theme="elegant"] .border {
+  border-color: var(--eg-border) !important;
+}
+
+[data-theme="elegant"] .divide-gray-200 > * + * {
+  border-color: var(--eg-border) !important;
+}
+
+/* ── Text colors ─────────────────────────────────── */
+[data-theme="elegant"] .text-zas-dark {
+  color: var(--eg-text) !important;
+}
+[data-theme="elegant"] .text-zas-gray {
+  color: var(--eg-text-muted) !important;
+}
+[data-theme="elegant"] .text-gray-700,
+[data-theme="elegant"] .dark\:text-gray-300 {
+  color: var(--eg-text-muted) !important;
+}
+[data-theme="elegant"] .text-gray-600 {
+  color: var(--eg-text-muted) !important;
+}
+[data-theme="elegant"] .text-gray-900 {
+  color: var(--eg-text) !important;
+}
+[data-theme="elegant"] .text-zas-primary {
+  color: var(--eg-primary) !important;
+}
+[data-theme="elegant"] .text-green-600 {
+  color: var(--eg-green) !important;
+}
+[data-theme="elegant"] .text-red-600 {
+  color: var(--eg-red) !important;
+}
+
+/* ── Form inputs & selects ───────────────────────── */
+[data-theme="elegant"] input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+[data-theme="elegant"] select,
+[data-theme="elegant"] textarea {
+  background-color: var(--eg-surface2) !important;
+  border-color: var(--eg-border2) !important;
+  color: var(--eg-text) !important;
+  border-radius: var(--eg-radius-sm) !important;
+  font-family: 'Raleway', sans-serif !important;
+  transition: border-color 0.15s !important;
+}
+[data-theme="elegant"] input::placeholder,
+[data-theme="elegant"] textarea::placeholder {
+  color: var(--eg-text-dim) !important;
+}
+[data-theme="elegant"] input:focus,
+[data-theme="elegant"] select:focus,
+[data-theme="elegant"] textarea:focus {
+  border-color: var(--eg-primary) !important;
+  box-shadow: 0 0 0 3px rgba(128,0,32,0.1) !important;
+  outline: none !important;
+}
+[data-theme="elegant"] select option {
+  background: var(--eg-surface2);
+  color: var(--eg-text);
+}
+
+/* Form labels */
+[data-theme="elegant"] label {
+  color: var(--eg-text-muted) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+/* Error messages */
+[data-theme="elegant"] .text-red-600,
+[data-theme="elegant"] p.text-red-600 {
+  color: var(--eg-red) !important;
+}
+
+/* Checkbox & radio */
+[data-theme="elegant"] input[type="checkbox"],
+[data-theme="elegant"] input[type="radio"] {
+  accent-color: var(--eg-primary) !important;
+  border-color: var(--eg-border2) !important;
+  background-color: var(--eg-surface2) !important;
+}
+
+/* ── Sections / filter bar ───────────────────────── */
+[data-theme="elegant"] .border-b,
+[data-theme="elegant"] .border-t {
+  border-color: var(--eg-border3) !important;
+}
+
+/* Filter section (boardgames index) */
+[data-theme="elegant"] .max-w-6xl.border-b {
+  background: var(--eg-surface) !important;
+  padding: 1.25rem 1.5rem !important;
+  border-radius: var(--eg-radius) !important;
+  border: 0.5px solid var(--eg-border) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* ── Boardgame cards grid ────────────────────────── */
+[data-theme="elegant"] .grid > div.bg-zas-light,
+[data-theme="elegant"] .grid > div.rounded-xl {
+  background-color: var(--eg-surface) !important;
+  border-color: var(--eg-border) !important;
+  border-radius: var(--eg-radius) !important;
+  transition: border-color 0.18s, transform 0.18s !important;
+}
+[data-theme="elegant"] .grid > div.bg-zas-light:hover,
+[data-theme="elegant"] .grid > div.rounded-xl:hover {
+  border-color: var(--eg-primary-border) !important;
+  box-shadow: 0 0 30px rgba(128,0,32,0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="elegant"] .grid > div h3 {
+  font-family: 'Cinzel', serif !important;
+  color: var(--eg-text) !important;
+}
+
+/* ── Pagination ──────────────────────────────────── */
+[data-theme="elegant"] nav[aria-label] span,
+[data-theme="elegant"] nav[aria-label] a {
+  background-color: var(--eg-surface) !important;
+  border-color: var(--eg-border) !important;
+  color: var(--eg-text-muted) !important;
+}
+[data-theme="elegant"] nav[aria-label] a:hover {
+  background-color: var(--eg-surface2) !important;
+  color: var(--eg-primary) !important;
+}
+[data-theme="elegant"] nav[aria-label] [aria-current="page"] span {
+  background-color: var(--eg-primary) !important;
+  border-color: var(--eg-primary) !important;
+  color: #fff !important;
+}
+
+/* ── Auth / guest layout card ────────────────────── */
+[data-theme="elegant"] .auth-card,
+[data-theme="elegant"] .sm\:rounded-lg {
+  background-color: var(--eg-surface) !important;
+  border-color: var(--eg-primary-border) !important;
+  box-shadow: 0 0 60px rgba(128,0,32,0.18) !important;
+  border-radius: var(--eg-radius) !important;
+}
+
+/* ── Secondary button ────────────────────────────── */
+[data-theme="elegant"] .bg-white.border.border-gray-300,
+[data-theme="elegant"] .dark\:bg-gray-800 {
+  background-color: var(--eg-surface2) !important;
+  border-color: var(--eg-border2) !important;
+  color: var(--eg-text-muted) !important;
+}
+
+/* ── Danger zone / delete modal ──────────────────── */
+[data-theme="elegant"] .bg-gray-50 {
+  background-color: var(--eg-surface2) !important;
+}
+[data-theme="elegant"] .bg-gray-100 {
+  background-color: var(--eg-surface2) !important;
+}
+[data-theme="elegant"] .bg-gray-200 {
+  background-color: var(--eg-surface3) !important;
+}
+
+/* ── Shadows ─────────────────────────────────────── */
+[data-theme="elegant"] .shadow,
+[data-theme="elegant"] .shadow-sm {
+  box-shadow: 0 1px 8px rgba(0,0,0,0.4) !important;
+}
+[data-theme="elegant"] .shadow-md,
+[data-theme="elegant"] .shadow-lg {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+}
+
+/* ── Nav link active border indicator ───────────────── */
+[data-theme="elegant"] nav .border-b-2 {
+  border-bottom-color: var(--eg-primary) !important;
+}
+
+/* ── Animations ──────────────────────────────────── */
+@keyframes eg-glow-pulse {
+  from { box-shadow: 0 0 20px rgba(128,0,32,0.08); }
+  to   { box-shadow: 0 0 50px rgba(128,0,32,0.22); }
+}
+
+[data-theme="elegant"] .shadow-xl.rounded-2xl,
+[data-theme="elegant"] .shadow-xl.sm\:rounded-lg {
+  animation: eg-glow-pulse 4s ease-in-out infinite alternate;
+}
+
+/* ── Theme selector card styles (inside profile) ── */
+.theme-option-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.theme-option-card:hover {
+  transform: translateY(-2px);
+}
+.theme-option-card.selected {
+  border-color: #800020;
+}
+.theme-option-card .theme-preview {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 80px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.theme-preview-classic {
+  background: #F3F4F6;
+}
+.theme-preview-elegant {
+  background: #0e0a0b;
+}
+.theme-preview-bar {
+  height: 20px;
+  width: 100%;
+}
+.theme-preview-bar-classic { background: #800020; }
+.theme-preview-bar-elegant { background: rgba(14,10,11,0.95); border-bottom: 1px solid rgba(128,0,32,0.3); }
+.theme-preview-content {
+  flex: 1;
+  padding: 6px 8px;
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+}
+.theme-preview-card-classic {
+  background: white;
+  border-radius: 4px;
+  flex: 1;
+  height: 100%;
+  border: 1px solid rgba(128,0,32,0.2);
+}
+.theme-preview-card-elegant {
+  background: #1a1215;
+  border-radius: 4px;
+  flex: 1;
+  height: 100%;
+  border: 0.5px solid rgba(128,0,32,0.3);
+}
+.theme-selected-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #800020;
+  color: white;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="elegant"] .theme-option-card {
+  background: var(--eg-surface) !important;
+  border-color: var(--eg-border) !important;
+  color: var(--eg-text) !important;
+}
+[data-theme="elegant"] .theme-option-card:hover {
+  border-color: var(--eg-border2) !important;
+}
+[data-theme="elegant"] .theme-option-card.selected {
+  border-color: var(--eg-primary) !important;
+  box-shadow: 0 0 20px rgba(128,0,32,0.2) !important;
+}
+[data-theme="elegant"] .theme-option-card label {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: var(--eg-text) !important;
+}
+[data-theme="elegant"] .theme-option-card p {
+  color: var(--eg-text-muted) !important;
+}
