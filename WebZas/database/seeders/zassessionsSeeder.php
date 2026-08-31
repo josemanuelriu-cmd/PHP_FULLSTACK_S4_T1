@@ -15,7 +15,7 @@ class zassessionsSeeder extends Seeder
     {
         DB::table('zassessions')->insert([
             [
-                'date' => '2026-03-20',
+                'date' => '2026-05-22',
                 'name' => 'Can Verdaguer',
                 'event_name' => 'Viernes de ZAS',
                 'start_time' => '17:00:00',

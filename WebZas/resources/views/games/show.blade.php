@@ -64,7 +64,7 @@
                         @endforeach
                     </h3>
                     <h3 class="text-2xl font-bold mb-8 text-zas-gray">
-                        🤓 <span class="{{ $game->necesary_know_how ? 'text-red-500' : 'text-zas-gray' }}"> {{ $game->necesary_know_how ? '' : 'Not is ' }}{{ __('messages.necessary know how to play') }} </span>
+                        🤓 <span class="{{ $game->necesary_know_how ? 'text-red-500' : 'text-zas-gray' }}"> {{ $game->necesary_know_how ? '' : __('messages.Not is ') }}{{ __('messages.necessary know how to play') }} </span>
                     </h3>
                 </div>
                 <div class="grid md:grid-rows-2 gap-8">

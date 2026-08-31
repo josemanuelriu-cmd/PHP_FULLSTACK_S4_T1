@@ -56,11 +56,19 @@
                         @if($user)
                             @php
                                 $isCurrent = $user->id === auth()->id();
-                            @endphp                                        
+                                $isExternal = $user->type === 'guest';
+                                $isZasUser = ($user->type === 'admin' || $user->type === 'junta' || $user->type === 'partner');
+                            @endphp                            
+                            @if($isExternal)
+                                🥸
+                            @endif
+                            @if($isZasUser)
+                                🔑
+                            @endif
+                            {{ $user->nickname }}
                             @if($isCurrent) 
                                 ⭐ 
                             @endif
-                            {{ $user->nickname }}                                   
                         @else
                             <span class="text-gray-400">-</span>
                         @endif
@@ -75,11 +83,19 @@
                         @if($user)
                             @php
                                 $isCurrent = $user->id === auth()->id();
-                            @endphp                                        
+                                $isExternal = $user->type === 'guest';
+                                $isZasUser = ($user->type === 'admin' || $user->type === 'junta' || $user->type === 'partner');
+                            @endphp                            
+                            @if($isExternal)
+                                🥸
+                            @endif
+                            @if($isZasUser)
+                                🔑
+                            @endif                            
+                            {{ $user->nickname }}
                             @if($isCurrent) 
                                 ⭐ 
                             @endif
-                            {{ $user->nickname }}                                    
                         @else
                             <span class="text-gray-400">-</span>
                         @endif
