@@ -75,6 +75,19 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
                 @endif
 
             </div>
+
+            <div class="flex gap-2 mt-10">
+                @if($isJoined && !$isFull)
+                    <form method="POST" action="{{ route('zassessions.externaljoin', [$zassession, $Name]) }}">
+                        @csrf
+                        <input type="text" name="external_name" placeholder="{{ __('messages.Name') }}" required>
+                        <button type="submit"
+                            class="bg-zas-gray px-4 py-2 rounded-lg text-zas-primary hover:bg-zas-primaryhover transition">
+                            {{ __('messages.Register external user to the session') }}
+                        </button>
+                    </form>
+                @endif
+            </div>
             @if(session('success'))
                 <div class="alert alert-success bg-green-200 text-green-800 p-3 rounded mb-4" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)">
                     {{ session('success') }}

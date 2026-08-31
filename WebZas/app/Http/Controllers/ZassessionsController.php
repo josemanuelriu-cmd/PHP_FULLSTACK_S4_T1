@@ -80,6 +80,25 @@ class ZassessionsController extends Controller
         return redirect()->route('zassessions.show', $zassession)
             ->with('success', __('messages.You have signed up for the session'));
     }
+    public function externaljoin(Request $request, Zassessions $zassession)
+    {
+        $user = Auth::user();
+        $Name = $request->input('external_name');
+
+        if (!$zassession->users()->where('nickname', $Name)->exists()) {
+            $PassTemp = $Name . '1234' . rand(1000, 9999);
+            $email = $Name . '@externaluser.com';
+            $externalUser = User::firstOrCreate(
+                ['nickname' => $Name, 'name' => $Name],
+                ['password' => $PassTemp, 'type' => 'guest', 'email' => $email, 'telephone' => null, 'age' => 18],
+                ['email_verified_at' => null, 'remember_token' => null]
+            );
+            $zassession->users()->attach($externalUser->id);
+        }
+
+        return redirect()->route('zassessions.show', $zassession)
+            ->with('success', __('messages.External user have been added to the session'));
+    }
     public function leave(Zassessions $zassession)
     {
         $zassession->users()->detach(Auth::id());

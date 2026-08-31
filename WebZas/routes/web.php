@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
         ->name('boardgames.show');
     Route::post('/zassessions/{zassession}/join', [ZassessionsController::class, 'join'])
         ->name('zassessions.join');
+    Route::post('/zassessions/{zassession}/externaljoin', [ZassessionsController::class, 'externaljoin'])
+        ->name('zassessions.externaljoin');
     Route::delete('/zassessions/{zassession}/leave', [ZassessionsController::class, 'leave'])
         ->name('zassessions.leave');
     Route::get('/zassessions/{zassession}/games/{game}', [GamesController::class, 'show'])
@@ -88,6 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/zas/{user?}', [ProfileController::class, 'editZas'])->name('profile.zas.edit');
     Route::patch('/profile/zas/{user?}', [ProfileController::class, 'updateZas'])->name('profile.zas.update');
+    Route::post('/profile/theme', [ProfileController::class, 'updateTheme'])->name('profile.theme.update');
     
     Route::fallback(function () {
         return response()->view('errors.404', [], 404);
