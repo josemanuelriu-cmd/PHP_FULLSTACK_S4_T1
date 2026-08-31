@@ -99,6 +99,23 @@ class ZassessionsController extends Controller
         return redirect()->route('zassessions.show', $zassession)
             ->with('success', __('messages.External user have been added to the session'));
     }
+    public function externaldelete(Zassessions $zassession, User $user)
+    {
+        if ($user->type === 'guest') {
+
+            $externalUser = User::where(['nickname' => $user->nickname, 'type' => 'guest'])->first();
+
+            if ($externalUser) {
+                $zassession->users()->detach($user->id);
+                $user->delete();
+                return redirect()->route('zassessions.show', $zassession)
+                    ->with('success', __('messages.External user has been removed from the session'));
+            }
+        }
+        return redirect()->route('zassessions.show', $zassession)
+            ->with('error', __('messages.Cannot remove this user from the session'));
+        
+    }
     public function leave(Zassessions $zassession)
     {
         $zassession->users()->detach(Auth::id());

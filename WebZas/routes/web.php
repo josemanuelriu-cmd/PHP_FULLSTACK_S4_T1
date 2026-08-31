@@ -79,6 +79,8 @@ Route::middleware('auth')->group(function () {
         ->name('zassessions.join');
     Route::post('/zassessions/{zassession}/externaljoin', [ZassessionsController::class, 'externaljoin'])
         ->name('zassessions.externaljoin');
+    Route::delete('/zassessions/{zassession}/externaldelete/{user}', [ZassessionsController::class, 'externaldelete'])
+        ->name('zassessions.externaldelete');
     Route::delete('/zassessions/{zassession}/leave', [ZassessionsController::class, 'leave'])
         ->name('zassessions.leave');
     Route::get('/zassessions/{zassession}/games/{game}', [GamesController::class, 'show'])

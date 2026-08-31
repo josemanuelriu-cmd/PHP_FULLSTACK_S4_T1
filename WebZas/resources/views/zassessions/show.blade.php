@@ -77,8 +77,8 @@ $canCreateGame = in_array($user->type, ['admin','junta','partner']);
             </div>
 
             <div class="flex gap-2 mt-10">
-                @if($isJoined && !$isFull)
-                    <form method="POST" action="{{ route('zassessions.externaljoin', [$zassession, $Name]) }}">
+                @if($isJoined && !$isFull && $canCreateGame)
+                    <form method="POST" action="{{ route('zassessions.externaljoin', $zassession) }}">
                         @csrf
                         <input type="text" name="external_name" placeholder="{{ __('messages.Name') }}" required>
                         <button type="submit"

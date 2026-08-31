@@ -5,6 +5,7 @@
     else {
         $isJoined = false;
     }
+    $canEliminateGuest = $user && in_array($user->type, ['admin', 'junta', 'partner']);
     $isFull = $zassession->users->count() >= $zassession->max_users+1;
 
     $maxSlots = 16;
@@ -69,6 +70,13 @@
                             @if($isCurrent) 
                                 ⭐ 
                             @endif
+                            @if($isExternal && $canEliminateGuest)
+                                <form method="POST" action="{{ route('zassessions.externaldelete', [$zassession, $user]) }}" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="tab-theme-btn bg-transparent hover:opacity-70 transition" title="{{ __('messages.Remove external user') }}">❌</button>
+                                </form>
+                            @endif
                         @else
                             <span class="text-gray-400">-</span>
                         @endif
@@ -95,6 +103,13 @@
                             {{ $user->nickname }}
                             @if($isCurrent) 
                                 ⭐ 
+                            @endif
+                            @if($isExternal && $canEliminateGuest)
+                                <form method="POST" action="{{ route('zassessions.externaldelete', [$zassession, $user]) }}" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="tab-theme-btn bg-transparent hover:opacity-70 transition" title="{{ __('messages.Remove external user') }}">❌</button>
+                                </form>
                             @endif
                         @else
                             <span class="text-gray-400">-</span>
